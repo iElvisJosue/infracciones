@@ -1,0 +1,62 @@
+/* IMPORTAMOS LA FUENTE */
+@font-face {
+  font-family: "Rubik";
+  src: url("../public/fuentes/Rubik.ttf") format("truetype");
+}
+
+/* CONFIGURACIÓN GENERAL */
+:root {
+  --BgGradiente: linear-gradient(90deg, #ffa726, #fb8c00);
+  --ColorNegro: #171616;
+  --ColorBlanco: #ffffff;
+  --ColorNaranja: #ffa726;
+  --ColorAzul: #0062dd;
+  --ColorAzulHover: #3683f9;
+  --ColorVerde: #408a15;
+  --ColorRojo: #cc362e;
+  --ColorGris: gray;
+  --ColorGrisClaro: #d4d5da;
+  --ColorGrisContenedor: #eef3f9;
+  --ColorGrisEncabezado: #f9fafe;
+
+  --toastify-color-success: var(--ColorVerde);
+  --toastify-color-info: var(--ColorAzul);
+  --toastify-color-warning: var(--ColorNaranja);
+  --toastify-color-error: var(--ColorRojo);
+
+  --toastify-toast-width: 400px;
+  --toastify-font-family: "Rubik", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: var(--ColorNegro);
+}
+body {
+  background: var(--BgGradiente);
+}
+input {
+  /* accent-color: var(--MainYellow); */
+  outline: none;
+}
+input[type="file"] {
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 12px; /* Ancho del scroll */
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--ColorAzul); /* Color del scroll thumb */
+}
+::-webkit-scrollbar-track {
+  background-color: var(--ColorBlanco); /* Color del track */
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+}
