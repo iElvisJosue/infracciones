@@ -1,0 +1,28 @@
+.SinResultados {
+  text-align: center;
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+.SinResultados__Imagen {
+  width: 300px;
+  height: 300px;
+}
+.SinResultados__Texto {
+  color: var(--ColorRojo);
+  font-size: 25px;
+  font-weight: bold;
+}
+@media (width <= 1000px) {
+  .SinResultados__Imagen {
+    width: 200px;
+    height: 200px;
+  }
+  .SinResultados__Texto {
+    font-size: 20px;
+  }
+}

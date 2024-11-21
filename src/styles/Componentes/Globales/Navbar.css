@@ -1,0 +1,71 @@
+.Navbar {
+  position: fixed;
+  /* width: 1024px; */
+  width: 100%;
+  height: 75px;
+  border-bottom: 1px solid var(--ColorGrisClaro);
+  background-color: var(--ColorBlanco);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  z-index: 999;
+}
+.Navbar__Boton {
+  background: none;
+  outline: none;
+  border: none;
+  color: var(--ColorNegro);
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  transition: 0.5s ease all;
+}
+.Navbar__Boton ion-icon {
+  font-size: 18px;
+}
+.Navbar__Boton:hover {
+  color: var(--ColorNaranja);
+  transform: scale(1.1);
+}
+.Navbar__Titulo {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+.Navbar__Logo {
+  background: var(--BgGradiente);
+  border-radius: 50%;
+  width: 45px;
+}
+@media (width > 1920px) {
+  .Navbar {
+    width: 1920px;
+  }
+}
+/* @media (width < 1024px) {
+  .Navbar {
+    width: 100%;
+  }
+} */
+@media (width < 500px) {
+  .Navbar__Boton {
+    font-size: 14px;
+  }
+  .Navbar__Boton ion-icon {
+    font-size: 16px;
+  }
+  .Navbar__Titulo {
+    font-size: 18px;
+  }
+  .Navbar__Logo {
+    width: 35px;
+  }
+}

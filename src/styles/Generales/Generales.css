@@ -1,0 +1,186 @@
+.Main {
+  position: relative;
+  /* width: 1024px; */
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  background-color: var(--ColorBlanco);
+
+  overflow: hidden;
+}
+.Main__Contenedor {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  padding-top: 95px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.Main__Contenedor--Titulo {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+  text-align: center;
+}
+.GrupoDeInputs {
+  grid-column: span 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.GrupoDeInputs.Dos {
+  grid-column: span 2;
+}
+.GrupoDeInputs.Tres {
+  grid-column: span 3;
+}
+.GrupoDeInputs.Completo {
+  grid-column: 1 / -1;
+}
+.GrupoDeInputs p {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--ColorNegro);
+  font-weight: bold;
+  font-size: 16px;
+  gap: 5px;
+}
+.GrupoDeInputs p ion-icon {
+  font-size: 20px;
+}
+.GrupoDeInputs b {
+  color: var(--ColorRojo);
+}
+.GrupoDeInputs input,
+.GrupoDeInputs select {
+  width: 100%;
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  font-size: 16px;
+  background-color: var(--ColorGrisClaro);
+  border: 1px solid var(--ColorGrisClaro);
+  padding: 0 10px;
+  color: var(--ColorNegro);
+  font-size: 16px;
+  font-weight: bold;
+}
+.GrupoDeInputs input:focus {
+  border: 2px solid var(--ColorNegro);
+}
+.GrupoDeBotonesInferior {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.GrupoDeBotonesInferior--Boton {
+  width: 250px;
+  min-height: 50px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.GrupoDeBotonesInferior--Boton ion-icon {
+  font-size: 18px;
+}
+.GrupoDeBotonesInferior--Boton.Cancelar {
+  background: var(--BgGradienteRojo);
+}
+.GrupoDeBotonesInferior--Boton.Registrar {
+  background: var(--BgGradienteVerde);
+}
+.GrupoDeBotonesInferior--Boton.Actualizar,
+.GrupoDeBotonesInferior--Boton.Siguiente {
+  background: var(--BgGradienteAzul);
+}
+.GrupoDeBotonesInferior--Boton:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.GrupoDeBotonesSuperior {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.GrupoDeBotonesSuperior--Boton {
+  width: 250px;
+  min-height: 50px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.GrupoDeBotonesSuperior--Boton ion-icon {
+  font-size: 18px;
+}
+.GrupoDeBotonesSuperior--Boton.Regresar {
+  background: var(--BgGradienteRojo);
+}
+.GrupoDeBotonesSuperior--Boton:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.MensajeDeErrorInput {
+  width: 100%;
+  font-size: 13px;
+  color: var(--ColorRojo);
+  font-weight: bold;
+}
+@media (width > 1920px) {
+  .Main {
+    width: 1920px;
+  }
+}
+@media (max-width: 1000px) {
+  .GrupoDeInputs.Tres {
+    grid-column: span 2;
+  }
+}
+@media (max-width: 900px) {
+  .GrupoDeBotonesSuperior--Boton,
+  .GrupoDeBotonesInferior--Boton {
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .GrupoDeInputs,
+  .GrupoDeInputs.Dos,
+  .GrupoDeInputs.Tres {
+    grid-column: 1 / -1;
+  }
+}
+@media (width < 400px) {
+  .Menu__Contenedor--Titulo {
+    font-size: 18px;
+  }
+}

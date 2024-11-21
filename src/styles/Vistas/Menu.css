@@ -1,0 +1,61 @@
+.Menu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+/* ++++++++++++++++++++++++++++++ */
+.Menu--Opcion {
+  grid-column: span 1;
+  min-height: 150px;
+  height: auto;
+  padding: 20px;
+  transition: 0.5s ease all;
+  text-align: center;
+  background-color: var(--ColorGrisContenido);
+  border: 2px solid var(--ColorGrisContenido);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.Menu--Opcion:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  background-color: var(--ColorNaranja);
+  border-color: var(--ColorNegro);
+}
+.Menu--Opcion--Imagen {
+  width: 100px;
+}
+.Menu--Opcion.CerrarSesion {
+  border-color: var(--ColorRojo);
+  background-color: var(--ColorRojo);
+}
+.Menu--Opcion.CerrarSesion:hover {
+  border-color: var(--ColorNegro);
+}
+.Menu--Opcion--Titulo {
+  font-size: 16px;
+  font-weight: bold;
+}
+@media (width < 700px) {
+  .Menu--Opcion--Imagen {
+    width: 80px;
+  }
+}
+@media (width < 570px) {
+  .Menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (width < 400px) {
+  .Menu--Opcion--Imagen {
+    width: 60px;
+  }
+  .Menu--Opcion--Titulo {
+    font-size: 14px;
+  }
+}

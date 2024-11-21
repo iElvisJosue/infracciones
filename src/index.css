@@ -7,17 +7,18 @@
 /* CONFIGURACIÓN GENERAL */
 :root {
   --BgGradiente: linear-gradient(90deg, #ffa726, #fb8c00);
+  --BgGradienteAzul: linear-gradient(-120deg, #265fa3, #0062dd);
+  --BgGradienteVerde: linear-gradient(-120deg, #408a15, #5bbf3d);
+  --BgGradienteRojo: linear-gradient(-120deg, #cc362e, #ff5c5c);
   --ColorNegro: #171616;
   --ColorBlanco: #ffffff;
   --ColorNaranja: #ffa726;
   --ColorAzul: #0062dd;
-  --ColorAzulHover: #3683f9;
   --ColorVerde: #408a15;
   --ColorRojo: #cc362e;
-  --ColorGris: gray;
-  --ColorGrisClaro: #d4d5da;
-  --ColorGrisContenedor: #eef3f9;
-  --ColorGrisEncabezado: #f9fafe;
+  --ColorGrisClaro: #f3f3f3;
+  --ColorGrisContenido: #d8d7d7;
+  --ColorGrisMedioOscuro: rgb(161, 161, 161);
 
   --toastify-color-success: var(--ColorVerde);
   --toastify-color-info: var(--ColorAzul);
@@ -38,7 +39,7 @@ a {
   color: var(--ColorNegro);
 }
 body {
-  background: var(--BgGradiente);
+  background: var(--ColorGrisContenido);
 }
 input {
   /* accent-color: var(--MainYellow); */
@@ -51,7 +52,7 @@ input[type="file"] {
   width: 12px; /* Ancho del scroll */
 }
 ::-webkit-scrollbar-thumb {
-  background-color: var(--ColorAzul); /* Color del scroll thumb */
+  background-color: var(--ColorNaranja); /* Color del scroll thumb */
 }
 ::-webkit-scrollbar-track {
   background-color: var(--ColorBlanco); /* Color del track */
