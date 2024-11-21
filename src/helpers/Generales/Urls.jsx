@@ -1,4 +1,4 @@
-// export const HOST = "https://www.usmxxpress.net/";
+// export const HOST = "https://infracciones.vercel.app/";
 // export const HOST_IMG = "https://www.usmxxpress.online:4000/public";
 // export const HOST_PDF = "https://www.usmxxpress.online:4000/PDF";
 export const HOST = "http://localhost:5173/";
