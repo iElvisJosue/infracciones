@@ -22,7 +22,7 @@ export default function CrearInfraccionConceptos({
     criteriaMode: "all",
   });
   const ManejarDetallesDelConcepto = handleSubmit(async (data) => {
-    if (data.idConcepto === "Invalido")
+    if (data.idListaConcepto === "Invalido")
       return toast.warning(
         "¡Oops! Parece que olvidaste seleccionar un concepto.",
         {
@@ -30,7 +30,7 @@ export default function CrearInfraccionConceptos({
         }
       );
     const ConceptoYaAgregado = informacionDelConcepto.some(
-      (concepto) => concepto.idConcepto === data.idConcepto
+      (concepto) => concepto.idListaConcepto === data.idListaConcepto
     );
     if (ConceptoYaAgregado)
       return toast.warning("¡Oops! Ya agregaste este concepto.", {
@@ -38,7 +38,7 @@ export default function CrearInfraccionConceptos({
       });
 
     const ConceptoEncontrado = conceptos.find(
-      (concepto) => concepto.idConcepto === Number(data.idConcepto)
+      (concepto) => concepto.idListaConcepto === Number(data.idListaConcepto)
     );
     data.ImporteConcepto = ConceptoEncontrado.ImporteConcepto;
     data.NombreConcepto = ConceptoEncontrado.NombreConcepto;
@@ -66,7 +66,7 @@ export default function CrearInfraccionConceptos({
       }
     );
     const nuevaListaDeConceptos = informacionDelConcepto.filter(
-      (item) => item.idConcepto !== id
+      (item) => item.idListaConcepto !== id
     );
     establecerInformacionDelConcepto(nuevaListaDeConceptos);
   };
@@ -94,15 +94,19 @@ export default function CrearInfraccionConceptos({
           <ion-icon name="help-circle"></ion-icon> Selecciona el concepto de la
           infracción<b>*</b>
         </p>
-        <select id="idConcepto" name="idConcepto" {...register("idConcepto")}>
+        <select
+          id="idListaConcepto"
+          name="idListaConcepto"
+          {...register("idListaConcepto")}
+        >
           <option value="Invalido">Selecciona un concepto</option>
           {conceptos?.map((concepto) => (
             <option
-              key={concepto.idConcepto}
-              value={concepto.idConcepto}
-              id={concepto.idConcepto}
+              key={concepto.idListaConcepto}
+              value={concepto.idListaConcepto}
+              id={concepto.idListaConcepto}
             >
-              {concepto.NombreConcepto} |{" "}
+              {concepto.NombreConcepto.toUpperCase()} |{" "}
               {concepto.ImporteConcepto.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
@@ -133,15 +137,15 @@ export default function CrearInfraccionConceptos({
               <p>Opciones</p>
             </div>
             {informacionDelConcepto.map(
-              ({ idConcepto, NombreConcepto, ImporteConcepto }) => (
+              ({ idListaConcepto, NombreConcepto, ImporteConcepto }) => (
                 <div
                   className="CrearInfraccionConceptos__ListaDeConceptos__Cuerpo"
-                  key={idConcepto}
+                  key={idListaConcepto}
                 >
                   <span className="CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles">
                     <p className="CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles--Texto Azul">
                       <ion-icon name="document"></ion-icon>{" "}
-                      <b>{NombreConcepto}</b>
+                      <b>{NombreConcepto.toUpperCase()}</b>
                     </p>
                   </span>
                   <span className="CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles">
@@ -159,7 +163,10 @@ export default function CrearInfraccionConceptos({
                     <button
                       className="CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton Eliminar"
                       onClick={() =>
-                        EliminarConceptoDeLaLista(NombreConcepto, idConcepto)
+                        EliminarConceptoDeLaLista(
+                          NombreConcepto,
+                          idListaConcepto
+                        )
                       }
                       type="button"
                       title="Eliminar concepto"

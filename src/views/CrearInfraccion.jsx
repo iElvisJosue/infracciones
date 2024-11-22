@@ -1,7 +1,6 @@
 // LIBRERÍAS A USAR
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // IMPORTAMOS LOS COMPONENTES
@@ -13,6 +12,9 @@ import CrearInfraccionConceptos from "../components/CrearInfraccion/CrearInfracc
 import CrearInfraccionDocumentosRetenidos from "../components/CrearInfraccion/CrearInfraccionDocumentosRetenidos";
 import CrearInfraccionEvidencias from "../components/CrearInfraccion/CrearInfraccionEvidencias";
 import CrearInfraccionInformacionDetallada from "../components/CrearInfraccion/CrearInfraccionInformacionDetallada";
+
+// IMPORTAMOS LAS PROPS DEL TOAST
+import { toastConfig } from "../helpers/Generales/ToastProps";
 
 // IMPORTAMOS LOS ESTILOS GENERALES
 import "../styles/Generales/Generales.css";
@@ -93,7 +95,7 @@ export default function CrearInfraccion() {
           <ComponenteParaRenderizar {...PropsParaLosComponentes} />
         </section>
       </div>
-      <ToastContainer limit={2} transition={Zoom} draggable stacked />
+      <ToastContainer {...toastConfig} />
     </main>
   );
 }

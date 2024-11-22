@@ -41,6 +41,9 @@ export default function AdministrarInfraccionesDetalles({
 
   const { Conceptos, DocumentosRetenidos, Evidencias } =
     conceptosDocumentosEvidencias;
+  console.log(Conceptos);
+  console.log(DocumentosRetenidos);
+  console.log(Evidencias);
 
   return (
     <div
@@ -173,12 +176,12 @@ export default function AdministrarInfraccionesDetalles({
         <img src="imagenes/LogoConcepto.png" alt="Logo Conceptos" />
         <h1>Conceptos</h1>
       </section>
-      {Conceptos.length > 0 ? (
-        (Conceptos.map(({ NombreConcepto, ImporteConcepto }, index) => (
+      {Conceptos.length > 0 &&
+        Conceptos.map(({ NombreConcepto, ImporteConcepto }) => (
           <>
             <div
               className="AdministrarInfraccionesDetalles__Detalles Dos"
-              key={index}
+              key={NombreConcepto}
             >
               <ion-icon name="help-circle"></ion-icon> <b>Concepto</b>
               {NombreConcepto || "-"}
@@ -191,14 +194,14 @@ export default function AdministrarInfraccionesDetalles({
               }) || "-"}
             </div>
           </>
-        )),
-        (
-          <div className="AdministrarInfraccionesDetalles__Detalles Completo Verde">
-            <ion-icon name="cash"></ion-icon> <b>Total</b>
-            {TotalParaPagar()}
-          </div>
-        ))
-      ) : (
+        ))}
+      {Conceptos.length > 0 && (
+        <div className="AdministrarInfraccionesDetalles__Detalles Completo Verde">
+          <ion-icon name="cash"></ion-icon> <b>Total</b>
+          {TotalParaPagar()}
+        </div>
+      )}
+      {Conceptos.length === 0 && (
         <SinResultados>¡Oops! No se encontraron conceptos.</SinResultados>
       )}
       <section className="AdministrarInfraccionesDetalles__Seccion">

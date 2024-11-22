@@ -1,12 +1,15 @@
-// IMPORTAMOS LAS LIBRERÍAS A USAR
+// LIBRERÍAS A USAR
 import { ToastContainer } from "react-toastify";
-import { Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// CONTEXTOS A USAR
 import { useGlobal } from "../context/GlobalContext";
 
 // IMPORTAMOS LOS COMPONENTES
 import Navbar from "../components/Globales/Navbar";
+
+// IMPORTAMOS LAS PROPS DEL TOAST
+import { toastConfig } from "../helpers/Generales/ToastProps";
 
 // IMPORTAMOS LAS AYUDAS A USAR
 import { OPCIONES_DEL_MENU } from "../helpers/Menu/MenuOpciones";
@@ -72,7 +75,7 @@ export default function Menu() {
           </section>
         </div>
       </div>
-      <ToastContainer limit={2} transition={Zoom} draggable stacked />
+      <ToastContainer {...toastConfig} />
     </main>
   );
 }

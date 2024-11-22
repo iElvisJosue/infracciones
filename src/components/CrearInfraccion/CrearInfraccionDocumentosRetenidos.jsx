@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 
+// IMPORTAMOS LOS HOOKS A USAR
+import useObtenerDocumentosActivos from "../../hooks/CrearInfraccion/useObtenerDocumentosActivos";
+
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
 
@@ -14,10 +17,20 @@ export default function CrearInfraccionDocumentosRetenidos({
   establecerInformacionDocumentosRetenidos,
   establecerVistaCrearInfraccion,
 }) {
+  const { documentos } = useObtenerDocumentosActivos();
   const { handleSubmit, register, reset } = useForm({
     criteriaMode: "all",
   });
   const ManejarDocumentosRetenidos = handleSubmit(async (data) => {
+    // PRIMER VERIFICAMOS SI SE HA SELECCIONADO UN DOCUMENTO
+    if (data.NombreDocumento === "Invalido")
+      return toast.warning(
+        "¡Oops! Parece que olvidaste seleccionar un documento.",
+        {
+          theme: "colored",
+        }
+      );
+    // SEGUNDO VERIFICAMOS SI YA SE HA AGREGADO EL DOCUMENTO
     const DocumentoYaAgregado = informacionDocumentosRetenidos.some(
       (documento) => documento.NombreDocumento === data.NombreDocumento
     );
@@ -82,10 +95,16 @@ export default function CrearInfraccionDocumentosRetenidos({
           name="NombreDocumento"
           {...register("NombreDocumento")}
         >
-          <option value="Sin documento">Sin documento</option>
-          <option value="Documento #1">Documento #1</option>
-          <option value="Documento #2">Documento #2</option>
-          <option value="Documento #3">Documento #3</option>
+          <option value="Invalido">Selecciona un documento</option>
+          {documentos?.map((concepto) => (
+            <option
+              key={concepto.NombreDocumento}
+              value={concepto.NombreDocumento}
+              id={concepto.NombreDocumento}
+            >
+              {concepto.NombreDocumento.toUpperCase()}
+            </option>
+          ))}
         </select>
       </span>
       <span className="GrupoDeInputs">
@@ -148,7 +167,7 @@ export default function CrearInfraccionDocumentosRetenidos({
                   <span className="CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles">
                     <p className="CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles--Texto Azul">
                       <ion-icon name="document"></ion-icon>{" "}
-                      <b>{NombreDocumento}</b>
+                      <b>{NombreDocumento.toUpperCase()}</b>
                     </p>
                   </span>
                   <span className="CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles">

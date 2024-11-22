@@ -1,11 +1,13 @@
 // LIBRERÍAS A USAR
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // IMPORTAMOS LOS CONTEXTOS
 import { useGlobal } from "../context/GlobalContext";
+
+// IMPORTAMOS LAS PROPS DEL TOAST
+import { toastConfig } from "../helpers/Generales/ToastProps";
 
 // IMPORTAMOS LOS COMPONENTES
 import Navbar from "../components/Globales/Navbar";
@@ -78,7 +80,7 @@ export default function MisInfracciones() {
           <ComponenteParaRenderizar {...PropsParaLosComponentes} />
         </section>
       </div>
-      <ToastContainer limit={2} transition={Zoom} draggable stacked />
+      <ToastContainer {...toastConfig} />
     </main>
   );
 }

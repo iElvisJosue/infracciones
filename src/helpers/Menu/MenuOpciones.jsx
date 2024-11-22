@@ -33,6 +33,18 @@ export const OPCIONES_DEL_MENU = {
       NombreDeLaOpcion: "Administrar Personas",
       VinculoOpcion: `${HOST}Administrar-Personas`,
     },
+    {
+      ImagenDeLaOpcion: "imagenes/AdministrarDocumentos.png",
+      AltImagenDeLaOpcion: "Icono menú documentos",
+      NombreDeLaOpcion: "Administrar Documentos",
+      VinculoOpcion: `${HOST}Administrar-Documentos`,
+    },
+    {
+      ImagenDeLaOpcion: "imagenes/AdministrarConceptos.png",
+      AltImagenDeLaOpcion: "Icono menú conceptos",
+      NombreDeLaOpcion: "Administrar Conceptos",
+      VinculoOpcion: `${HOST}Administrar-Conceptos`,
+    },
   ],
   Agente: [
     {

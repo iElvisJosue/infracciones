@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // CONTEXTOS A USAR
 import { useGlobal } from "../context/GlobalContext";
+
+// IMPORTAMOS LAS PROPS DEL TOAST
+import { toastConfig } from "../helpers/Generales/ToastProps";
 
 // HOOKS A USAR
 import useContraseña from "../hooks/IniciarSesion/useContraseña";
@@ -123,7 +125,7 @@ export default function IniciarSesion() {
           Iniciar Sesión <ion-icon name="log-in"></ion-icon>
         </button>
       </form>
-      <ToastContainer limit={2} transition={Zoom} draggable stacked />
+      <ToastContainer {...toastConfig} />
     </main>
   );
 }

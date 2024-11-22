@@ -6,6 +6,7 @@ import { ProveedorAgentes } from "./context/AgentesContext";
 import { ProveedorPersonas } from "./context/PersonasContext";
 import { ProveedorGruas } from "./context/GruasContext";
 import { ProveedorConceptos } from "./context/ConceptosContext";
+import { ProveedorDocumentos } from "./context/DocumentosContext";
 
 // IMPORTAMOS LAS VISTAS
 import IniciarSesion from "./views/IniciarSesion";
@@ -15,6 +16,8 @@ import AdministrarInfracciones from "./views/AdministrarInfracciones";
 import AdministrarAgentes from "./views/AdministrarAgentes";
 import AdministrarGruas from "./views/AdministrarGruas";
 import AdministrarPersonas from "./views/AdministrarPersonas";
+import AdministrarDocumentos from "./views/AdministrarDocumentos";
+import AdministrarConceptos from "./views/AdministrarConceptos";
 import MisInfracciones from "./views/MisInfracciones";
 
 // PROTECCIÓN DE RUTAS
@@ -30,50 +33,60 @@ export default function App() {
           <ProveedorPersonas>
             <ProveedorGruas>
               <ProveedorConceptos>
-                <BrowserRouter>
-                  <Routes>
-                    {/* RUTAS SIN PROTECCIÓN */}
-                    <Route path="/" element={<IniciarSesion />} />
-                    {/* TERMINAN LAS RUTAS SIN PROTECCIÓN */}
-                    {/* RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}
-                    <Route element={<ProteccionPorCookies />}>
-                      <Route path="/Menu" element={<Menu />} />
-                      <Route
-                        path="/Crear-Infraccion"
-                        element={<CrearInfraccion />}
-                      />
-                      {/* RUTAS PROTEGIDAS PARA AGENTES */}
-                      <Route element={<ProteccionParaAgentes />}>
+                <ProveedorDocumentos>
+                  <BrowserRouter>
+                    <Routes>
+                      {/* RUTAS SIN PROTECCIÓN */}
+                      <Route path="/" element={<IniciarSesion />} />
+                      {/* TERMINAN LAS RUTAS SIN PROTECCIÓN */}
+                      {/* RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}
+                      <Route element={<ProteccionPorCookies />}>
+                        <Route path="/Menu" element={<Menu />} />
                         <Route
-                          path="/Mis-Infracciones"
-                          element={<MisInfracciones />}
+                          path="/Crear-Infraccion"
+                          element={<CrearInfraccion />}
                         />
+                        {/* RUTAS PROTEGIDAS PARA AGENTES */}
+                        <Route element={<ProteccionParaAgentes />}>
+                          <Route
+                            path="/Mis-Infracciones"
+                            element={<MisInfracciones />}
+                          />
+                        </Route>
+                        {/* TERMINAN LAS RUTAS PROTEGIDAS PARA AGENTES */}
+                        {/* RUTAS PROTEGIDAS PARA ADMINISTRADORES */}
+                        <Route element={<ProteccionParaAdministradores />}>
+                          <Route
+                            path="/Administrar-Infracciones"
+                            element={<AdministrarInfracciones />}
+                          />
+                          <Route
+                            path="/Administrar-Agentes"
+                            element={<AdministrarAgentes />}
+                          />
+                          <Route
+                            path="/Administrar-Gruas"
+                            element={<AdministrarGruas />}
+                          />
+                          <Route
+                            path="/Administrar-Personas"
+                            element={<AdministrarPersonas />}
+                          />
+                          <Route
+                            path="/Administrar-Documentos"
+                            element={<AdministrarDocumentos />}
+                          />
+                          <Route
+                            path="/Administrar-Conceptos"
+                            element={<AdministrarConceptos />}
+                          />
+                        </Route>
+                        {/* TERMINAN LAS RUTAS PROTEGIDAS PARA ADMINISTRADORES */}
                       </Route>
-                      {/* TERMINAN LAS RUTAS PROTEGIDAS PARA AGENTES */}
-                      {/* RUTAS PROTEGIDAS PARA ADMINISTRADORES */}
-                      <Route element={<ProteccionParaAdministradores />}>
-                        <Route
-                          path="/Administrar-Infracciones"
-                          element={<AdministrarInfracciones />}
-                        />
-                        <Route
-                          path="/Administrar-Agentes"
-                          element={<AdministrarAgentes />}
-                        />
-                        <Route
-                          path="/Administrar-Gruas"
-                          element={<AdministrarGruas />}
-                        />
-                        <Route
-                          path="/Administrar-Personas"
-                          element={<AdministrarPersonas />}
-                        />
-                      </Route>
-                      {/* TERMINAN LAS RUTAS PROTEGIDAS PARA ADMINISTRADORES */}
-                    </Route>
-                    {/* TERMINAN LAS RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}
-                  </Routes>
-                </BrowserRouter>
+                      {/* TERMINAN LAS RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}
+                    </Routes>
+                  </BrowserRouter>
+                </ProveedorDocumentos>
               </ProveedorConceptos>
             </ProveedorGruas>
           </ProveedorPersonas>

@@ -1,7 +1,6 @@
 // LIBRERÍAS A USAR
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // IMPORTAMOS LOS COMPONENTES
@@ -9,6 +8,9 @@ import Navbar from "../components/Globales/Navbar";
 import AdministrarAgentesFormulario from "../components/AdministrarAgentes/AdministrarAgentesFormulario";
 import AdministrarAgentesListaDeAgentes from "../components/AdministrarAgentes/AdministrarAgentesListaDeAgentes";
 import AdministrarAgentesEditarAgente from "../components/AdministrarAgentes/AdministrarAgentesEditarAgente";
+
+// IMPORTAMOS LAS PROPS DEL TOAST
+import { toastConfig } from "../helpers/Generales/ToastProps";
 
 // IMPORTAMOS LOS ESTILOS GENERALES
 import "../styles/Generales/Generales.css";
@@ -48,7 +50,7 @@ export default function AdministrarAgentes() {
           )}
         </section>
       </div>
-      <ToastContainer limit={2} transition={Zoom} draggable stacked />
+      <ToastContainer {...toastConfig} />
     </main>
   );
 }
