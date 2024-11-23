@@ -113,6 +113,9 @@
 .CrearInfraccionSeleccionarGrua__Grua ion-icon {
   font-size: 25px;
 }
+.CrearInfraccionSeleccionarPersona__Persona b {
+  text-transform: uppercase;
+}
 .CrearInfraccionSeleccionarPersona__Persona:hover,
 .CrearInfraccionSeleccionarGrua__Grua:hover {
   border: 2px solid var(--ColorNegro);
@@ -534,6 +537,10 @@
   }
   .CrearInfraccionEvidencias__SeleccionarImagenes__Label {
     width: 100%;
+  }
+  .CrearInfraccionSeleccionarPersona__Persona img,
+  .CrearInfraccionSeleccionarGrua__Grua img {
+    width: 65px;
   }
 }
 @media (width <= 400px) {

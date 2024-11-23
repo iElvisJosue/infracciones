@@ -64,23 +64,26 @@ export default function CrearInfraccionSeleccionarPersona({
             }}
           >
             <img src="imagenes/InformacionPersona.png" alt="Imagen persona" />
+            <b>Nombre</b>
             <p>
               {persona.NombrePersona} {persona.ApellidoPaternoPersona}{" "}
               {persona.ApellidoMaternoPersona}
             </p>
             {persona.CURPPersona && (
               <>
-                <ion-icon name="id-card"></ion-icon>
-                <p>{persona.RFCPersona.toUpperCase()}</p>
+                {/* <ion-icon name="id-card"></ion-icon> */}
+                <b>Curp</b>
                 <p>{persona.CURPPersona.toUpperCase()}</p>
+                <b>Rfc</b>
+                <p>{persona.RFCPersona.toUpperCase()}</p>
               </>
             )}
-            {persona.DireccionPersona && (
+            {/* {persona.DireccionPersona && (
               <>
                 <ion-icon name="location"></ion-icon>
                 <p>{persona.DireccionPersona}</p>
               </>
-            )}
+            )} */}
           </section>
         ))
       ) : (

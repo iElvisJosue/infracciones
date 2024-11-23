@@ -70,7 +70,6 @@ export default function AdministrarAgentesListaDeAgentes({
   };
   const ALTA = "Alta";
   const ADMINISTRADOR = "Administrador";
-  console.log(agentes);
 
   if (cargandoAgentes) return <Cargando />;
 

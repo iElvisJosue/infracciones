@@ -41,9 +41,6 @@ export default function AdministrarInfraccionesDetalles({
 
   const { Conceptos, DocumentosRetenidos, Evidencias } =
     conceptosDocumentosEvidencias;
-  console.log(Conceptos);
-  console.log(DocumentosRetenidos);
-  console.log(Evidencias);
 
   return (
     <div

@@ -24,6 +24,12 @@
   color: var(--ColorNaranja);
   text-align: center;
 }
+.AdministrarAgentes__Formulario--MensajeEncriptado {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ColorRojo);
+  font-weight: bold;
+}
 .AdministrarAgentes__Lista__Subtitulo {
   grid-column: 1 / -1;
   font-size: 18px;

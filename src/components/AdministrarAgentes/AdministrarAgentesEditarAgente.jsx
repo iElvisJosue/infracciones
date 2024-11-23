@@ -219,6 +219,11 @@ export default function AdministrarAgentesEditarAgente({
           <option value="Administrador">Administrador</option>
         </select>
       </span>
+      <small className="AdministrarAgentes__Formulario--MensajeEncriptado">
+        🔐
+        <br />
+        Por seguridad del agente, su contraseña se mostrará encriptada.
+      </small>
       <GrupoDeBotonesInferior BotonActualizar={true} />
     </form>
   );
