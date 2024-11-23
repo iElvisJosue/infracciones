@@ -12,6 +12,9 @@ import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
 import { HOST_IMG } from "../../helpers/Generales/Urls";
 
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfraccionesDetalles.css";
+
 export default function AdministrarInfraccionesDetalles({
   esCompleta,
   detallesInfraccion,

@@ -10,6 +10,9 @@ import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
 
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/CrearInfraccion/CrearInfraccionDetallesInfraccion.css";
+
 export default function CrearInfraccionDetallesInfraccion({
   establecerInformacionDeLaInfraccion,
   establecerVistaCrearInfraccion,

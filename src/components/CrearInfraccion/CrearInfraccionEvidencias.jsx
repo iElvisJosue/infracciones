@@ -9,12 +9,17 @@ import { useInfracciones } from "../../context/InfraccionesContext";
 import { useGlobal } from "../../context/GlobalContext";
 
 // COMPONENTES A USAR
+import CrearInfraccionModalSubiendo from "./CrearInfraccionModalSubiendo";
+import CrearInfraccionModalExitoso from "./CrearInfraccionModalExitoso";
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/CrearInfraccion/CrearInfraccionEvidencias.css";
 
 export default function CrearInfraccionEvidencias({
   informacionDeLaPersona,
@@ -30,6 +35,8 @@ export default function CrearInfraccionEvidencias({
   const { agente } = useGlobal();
   const { RegistrarInfraccion, GuardarImagenDeEvidencia } = useInfracciones();
   const [cantidadDeImagenes, establecerCantidadDeImagenes] = useState(0);
+  const [verModalSubiendo, establecerVerModalSubiendo] = useState(false);
+  const [verModalExitoso, establecerVerModalExitoso] = useState(false);
   const { handleSubmit } = useForm({
     criteriaMode: "all",
   });
@@ -71,6 +78,7 @@ export default function CrearInfraccionEvidencias({
 
   const GuardarInformacionDeLaInfraccion = async () => {
     try {
+      establecerVerModalSubiendo(true);
       const res = await RegistrarInfraccion({
         CookieConToken: COOKIE_CON_TOKEN,
         Infraccion: informacionDeLaInfraccion,
@@ -116,7 +124,8 @@ export default function CrearInfraccionEvidencias({
       numImagen++;
     }
     establecerIdDeLaInfraccion(idInfraccion);
-    establecerVistaCrearInfraccion(6);
+    establecerVerModalSubiendo(false);
+    establecerVerModalExitoso(true);
   };
 
   return (
@@ -125,6 +134,12 @@ export default function CrearInfraccionEvidencias({
       encType="multipart/form-data"
       onSubmit={ValidarLasImagenes}
     >
+      {verModalSubiendo && <CrearInfraccionModalSubiendo />}
+      {verModalExitoso && (
+        <CrearInfraccionModalExitoso
+          establecerVistaCrearInfraccion={establecerVistaCrearInfraccion}
+        />
+      )}
       <GrupoDeBotonesSuperior
         BotonRegresar={true}
         FuncionRegresar={establecerVistaCrearInfraccion}

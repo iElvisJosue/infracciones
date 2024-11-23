@@ -14,6 +14,9 @@ import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidacio
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
 
+// ESTILOS A USAR
+import "../../styles/Componentes/AdministrarDocumentos/AdministrarDocumentosFormulario.css";
+
 export default function AdministrarDocumentosFormulario({
   obtenerDocumentosNuevamente,
   establecerObtenerDocumentosNuevamente,

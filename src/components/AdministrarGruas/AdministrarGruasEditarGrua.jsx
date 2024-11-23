@@ -16,6 +16,7 @@ import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidacio
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
 
+// LOS ESTILOS ESTÁN EN AdministrarGruasFormulario.css
 export default function AdministrarGruasEditarGrua({
   informacionDeLaGrua,
   establecerVistaAdministrarGruas,

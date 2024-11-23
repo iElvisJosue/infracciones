@@ -1,0 +1,58 @@
+.CrearInfraccionModalSubiendo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding: 10px;
+
+  z-index: 1000;
+}
+.CrearInfraccionModalSubiendo__Contenido {
+  position: relative;
+  background-color: var(--ColorBlanco);
+  padding: 10px;
+  width: 400px;
+  min-height: 100px;
+  border: 2px solid var(--ColorSecundario);
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+}
+.CrearInfraccionModalSubiendo__Contenido--Subiendo {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.CrearInfraccionModalSubiendo__Contenido--Subiendo--Barra {
+  width: 250px;
+  height: 30px;
+  background: linear-gradient(var(--ColorNaranja) 0 0) 0/0% no-repeat
+    var(--ColorGrisClaro);
+  animation: Subiendo 2s infinite linear;
+}
+.CrearInfraccionModalSubiendo__Contenido--Subiendo--Texto {
+  color: var(--ColorNaranja);
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+@keyframes Subiendo {
+  100% {
+    background-size: 100%;
+  }
+}
+@media (width <= 550px) {
+  .CrearInfraccionModalSubiendo__Contenido {
+    width: 100%;
+  }
+}

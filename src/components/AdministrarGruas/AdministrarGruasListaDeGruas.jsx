@@ -1,17 +1,25 @@
 /* eslint-disable react/prop-types */
+// LIBRERÍAS A USAR
+import { useEffect } from "react";
+
 // CONTEXTOS A USAR
 import { useGruas } from "../../context/GruasContext";
 
 // IMPORTAMOS LOS COMPONENTES
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
+import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerGruasPorFiltro from "../../hooks/AdministrarGruas/useObtenerGruasPorFiltro";
+import usePaginacion from "../../hooks/Paginacion/usePagicacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
+
+// ESTILOS A USAR
+import "../../styles/Componentes/AdministrarGruas/AdministrarGruasListaDeGruas.css";
 
 export default function AdministrarGruasListaDeGruas({
   obtenerGruasNuevamente,
@@ -20,13 +28,29 @@ export default function AdministrarGruasListaDeGruas({
   establecerInformacionDeLaGrua,
 }) {
   const { ActivarDesactivarGrua } = useGruas();
+  const { gruas, cargandoGruas, establecerFiltroGruas } =
+    useObtenerGruasPorFiltro({
+      obtenerGruasNuevamente,
+    });
   const {
-    gruas,
-    cargandoGruas,
-    // establecerFiltroGruas,
-  } = useObtenerGruasPorFiltro({
-    obtenerGruasNuevamente,
-  });
+    CantidadParaMostrar,
+    paginaParaMostrar,
+    indiceInicial,
+    indiceFinal,
+    cantidadDePaginas,
+    establecerCantidadDePaginas,
+    MostrarVeinticincoMas,
+    MostrarVeinticincoMenos,
+    reiniciarValores,
+  } = usePaginacion();
+  useEffect(() => {
+    if (gruas) {
+      const CantidadDePaginasEnGruas = Math.ceil(
+        gruas.length / CantidadParaMostrar
+      );
+      establecerCantidadDePaginas(CantidadDePaginasEnGruas);
+    }
+  }, [gruas]);
 
   const PeticionActivarDesactivarGrua = async (idGrua, EstadoGruaParaBD) => {
     try {
@@ -48,16 +72,16 @@ export default function AdministrarGruasListaDeGruas({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  // const ObtenerLosProductos = (event) => {
-  //   const valorIntroducido = event.target.value;
-  //   // Utilizamos una expresión regular para permitir letras, números y "-"
-  //   const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-  //   // Comprobamos si el nuevo valor cumple con la expresión regular
-  //   if (regex.test(valorIntroducido)) {
-  //     establecerFiltroProductos(valorIntroducido);
-  //     reiniciarValores();
-  //   }
-  // };
+  const BuscarGruas = (event) => {
+    const valorIntroducido = event.target.value;
+    // Utilizamos una expresión regular para permitir letras, números y "-"
+    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
+    // Comprobamos si el nuevo valor cumple con la expresión regular
+    if (regex.test(valorIntroducido)) {
+      establecerFiltroGruas(valorIntroducido);
+      reiniciarValores();
+    }
+  };
   const CambiarVistaParaEditarGrua = (infGrua) => {
     establecerInformacionDeLaGrua(infGrua);
     establecerVistaAdministrarGruas(1);
@@ -71,31 +95,56 @@ export default function AdministrarGruasListaDeGruas({
       <h1 className="AdministrarGruas__Lista--Titulo">
         Lista de grúas <br /> 📃
       </h1>
+      <span className="AdministrarGruas__Lista--Buscar">
+        <input type="text" placeholder="Buscar grúa" onChange={BuscarGruas} />
+        <span className="AdministrarGruas__Lista--Buscar--Lupa">
+          <ion-icon name="search"></ion-icon>
+        </span>
+      </span>
       {gruas.length > 0 ? (
         <>
           <h3 className="AdministrarGruas__Lista__Subtitulo">
             Estatus de las grúas:
           </h3>
-          <span className="AdministrarGruas__Clasificacion">
-            <p className="AdministrarGruas__Clasificacion--Texto Activa">
+          <span className="AdministrarGruas__Lista__Clasificacion">
+            <p className="AdministrarGruas__Lista__Clasificacion--Texto Activa">
               <ion-icon name="hammer"></ion-icon> Activa
             </p>
-            <p className="AdministrarGruas__Clasificacion--Texto Desactivada">
+            <p className="AdministrarGruas__Lista__Clasificacion--Texto Desactivada">
               <ion-icon name="ban"></ion-icon> Desactivada
             </p>
           </span>
-          {gruas.map((infGrua) => (
+          <small className="AdministrarGruas__Lista--TextoResultados">
+            <ion-icon name="search-circle"></ion-icon>Obtuvimos {gruas.length}{" "}
+            resultados{" "}
+          </small>
+          {gruas.length > CantidadParaMostrar && (
+            <ControlDePaginacion
+              resultadosComponente={gruas}
+              paginaParaMostrar={paginaParaMostrar}
+              cantidadDePaginas={cantidadDePaginas}
+              CantidadParaMostrar={CantidadParaMostrar}
+              MostrarVeinticincoMas={MostrarVeinticincoMas}
+              MostrarVeinticincoMenos={MostrarVeinticincoMenos}
+              indiceInicial={indiceInicial}
+              indiceFinal={indiceFinal}
+            />
+          )}
+          {gruas.slice(indiceInicial, indiceFinal).map((infGrua) => (
             <section
-              className={`AdministrarGruas__Grua ${
+              className={`AdministrarGruas__Lista__Grua ${
                 infGrua.ActivaGrua === SI ? "Si" : "No"
               }`}
               key={infGrua.idGrua}
             >
-              <span className="AdministrarGruas__Grua__Detalles">
+              <span className="AdministrarGruas__Lista__Grua__Detalles">
                 {infGrua.ActivaGrua === SI ? (
-                  <img src="imagenes/Gruas.png" alt="" />
+                  <img src="imagenes/Gruas.png" alt="Imagen de la grua" />
                 ) : (
-                  <img src="imagenes/Desactivado.png" alt="" />
+                  <img
+                    src="imagenes/Desactivado.png"
+                    alt="Imagen desactivada"
+                  />
                 )}
                 {infGrua.ActivaGrua === SI && (
                   <>
@@ -106,7 +155,7 @@ export default function AdministrarGruasListaDeGruas({
                 <p>Nombre</p>
                 <p>{infGrua.NombreGrua}</p>
                 <span
-                  className={`AdministrarGruas__Grua__Detalles--Activa ${
+                  className={`AdministrarGruas__Lista__Grua__Detalles--Activa ${
                     infGrua.ActivaGrua === SI ? "Si" : "No"
                   }`}
                 >
@@ -132,9 +181,9 @@ export default function AdministrarGruasListaDeGruas({
                 </span>
               </span>
               {infGrua.ActivaGrua === SI && (
-                <span className="AdministrarGruas__Grua__Opciones">
+                <span className="AdministrarGruas__Lista__Grua__Opciones">
                   <button
-                    className="AdministrarGruas__Grua__Opciones--Boton"
+                    className="AdministrarGruas__Lista__Grua__Opciones--Boton"
                     title="Editar grúa"
                     onClick={() => {
                       CambiarVistaParaEditarGrua(infGrua);

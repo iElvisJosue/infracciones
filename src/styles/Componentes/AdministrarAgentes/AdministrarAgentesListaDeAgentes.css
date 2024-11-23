@@ -1,0 +1,268 @@
+.AdministrarAgentes__Lista {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.AdministrarAgentes__Lista {
+  grid-template-columns: repeat(4, 1fr);
+}
+.AdministrarAgentes__Lista--Titulo {
+  grid-column: 1 / -1;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+  text-align: center;
+}
+.AdministrarAgentes__Lista__Subtitulo {
+  grid-column: 1 / -1;
+  font-size: 18px;
+  color: var(--ColorNaranja);
+
+  display: flex;
+  gap: 5px;
+}
+.AdministrarAgentes__Lista--Buscar {
+  grid-column: 4/5;
+  display: flex;
+}
+.AdministrarAgentes__Lista--Buscar input {
+  width: 100%;
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  background-color: var(--ColorGrisClaro);
+  border: 1px solid var(--ColorGrisClaro);
+  padding: 0 10px;
+  color: var(--ColorNegro);
+  font-size: 16px;
+  font-weight: bold;
+}
+.AdministrarAgentes__Lista--Buscar--Lupa {
+  min-width: 50px;
+  min-height: 50px;
+  background: var(--BgGradiente);
+  color: var(--ColorBlanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.AdministrarAgentes__Lista__Clasificacion {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 5px;
+}
+.AdministrarAgentes__Lista__Clasificacion--Texto {
+  width: auto;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 14px;
+  color: var(--ColorNegro);
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.AdministrarAgentes__Lista__Clasificacion--Texto ion-icon {
+  font-size: 16px;
+}
+.AdministrarAgentes__Lista__Clasificacion--Texto.Activa {
+  background-color: var(--ColorGrisClaro);
+  color: var(--ColorNegro);
+}
+.AdministrarAgentes__Lista__Clasificacion--Texto.Desactivada {
+  color: var(--ColorBlanco);
+  background-color: var(--ColorRojo);
+}
+.AdministrarAgentes__Lista__Clasificacion--Texto.Administrador {
+  color: var(--ColorNegro);
+  background: var(--BgGradiente);
+}
+.AdministrarAgentes__Lista--TextoResultados {
+  grid-column: 1 / -1;
+  color: var(--ColorVerde);
+  text-align: right;
+  font-style: italic;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.AdministrarAgentes__Lista--TextoResultados ion-icon {
+  font-size: 20px;
+}
+.AdministrarAgentes__Lista__Agente {
+  grid-column: span 1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s ease-in-out all;
+  color: var(--ColorNegro);
+  background-color: var(--ColorGrisClaro);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.AdministrarAgentes__Lista__Agente.Administrador {
+  background: var(--BgGradiente);
+}
+.AdministrarAgentes__Lista__Agente.No {
+  background-color: var(--ColorRojo);
+  color: var(--ColorBlanco);
+}
+.AdministrarAgentes__Lista__Agente ion-icon {
+  font-size: 25px;
+}
+.AdministrarAgentes__Lista__Agente__Detalles {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.AdministrarAgentes__Lista__Agente__Detalles img {
+  width: 75px;
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  min-width: 40px;
+  min-height: 25px;
+  border-radius: 15px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  min-width: 40px;
+  min-height: 25px;
+  border-radius: 15px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa.No {
+  background-color: var(--ColorRojo);
+}
+.AdministrarAgentes__Lista__Agente.No
+  .AdministrarAgentes__Lista__Agente__Detalles--Activa.No {
+  background: var(--ColorNegro);
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa.Si {
+  background-color: var(--ColorVerde);
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa.Si button {
+  transform: translateX(8px);
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa.Si button ion-icon {
+  color: var(--ColorVerde);
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa.No button {
+  transform: translateX(-8px);
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa.No button ion-icon {
+  color: var(--ColorRojo);
+}
+.AdministrarAgentes__Lista__Agente__Detalles--Activa button ion-icon {
+  font-size: 10px;
+}
+.AdministrarAgentes__Lista__Agente__Opciones {
+  width: 100%;
+  min-height: 35px;
+
+  display: flex;
+}
+.AdministrarAgentes__Lista__Agente__Opciones--Boton {
+  width: 100%;
+  height: 100%;
+  background: var(--BgGradienteAzul);
+  color: var(--ColorBlanco);
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AdministrarAgentes__Lista__Agente__Opciones--Boton:hover ion-icon {
+  transform: scale(1.2);
+}
+.AdministrarAgentes__Lista__Agente__Opciones--Boton ion-icon {
+  font-size: 18px;
+  transition: 0.3s ease-in-out all;
+}
+@media (max-width: 1000px) {
+  .AdministrarAgentes__Lista--Buscar {
+    grid-column: 1 / -1;
+  }
+}
+@media (width <= 800px) {
+  .AdministrarAgentes__Lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (width <= 500px) {
+  .AdministrarAgentes__Lista {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .AdministrarAgentes__Lista__Clasificacion {
+    font-size: 18px;
+  }
+  .AdministrarAgentes__Lista__Agente,
+  .AdministrarAgentes__Lista__Clasificacion--Texto {
+    font-size: 12px;
+  }
+  .AdministrarAgentes__Lista__Agente__Opciones {
+    min-height: 30px;
+  }
+  .AdministrarAgentes__Lista__Agente__Detalles img {
+    width: 55px;
+  }
+  .AdministrarAgentes__Lista--TextoResultados {
+    font-size: 12px;
+  }
+  .AdministrarAgentes__Lista--TextoResultados ion-icon {
+    font-size: 16px;
+  }
+}
+@media (width <= 435px) {
+  .AdministrarAgentes__Lista__Clasificacion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .AdministrarAgentes__Lista__Clasificacion--Texto {
+    grid-column: span 1;
+  }
+}

@@ -1,0 +1,203 @@
+.CrearInfraccionConceptos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.CrearInfraccionConceptos {
+  grid-template-columns: repeat(3, 1fr);
+}
+.CrearInfraccionConceptos--Titulo {
+  grid-column: 1 / -1;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+  text-align: center;
+  margin-top: 10px;
+}
+.CrearInfraccionConceptos__Botones {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.CrearInfraccionConceptos__Botones--Boton {
+  width: 250px;
+  min-height: 50px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.CrearInfraccionConceptos__Botones--Boton:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.CrearInfraccionConceptos__Botones--Boton.Agregar {
+  background: var(--BgGradienteVerde);
+}
+.CrearInfraccionConceptos__Botones--Boton.Siguiente {
+  background: var(--BgGradienteAzul);
+}
+.CrearInfraccionConceptos__Botones--Boton ion-icon {
+  font-size: 18px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos {
+  grid-column: 1 / -1;
+  padding: 10px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Titulo__Texto {
+  color: var(--ColorAzul);
+  font-weight: bold;
+  font-size: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Encabezado {
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  margin-top: 15px;
+  background: var(--BgGradienteAzul);
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+
+  display: flex;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Encabezado p {
+  width: 100%;
+  color: var(--ColorBlanco);
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo {
+  display: flex;
+  border: 2px solid var(--ColorGrisClaro);
+  border-top: none;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: var(--ColorNegro);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles--Texto {
+  text-align: center;
+  color: var(--ColorNegro);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles--Texto.Azul {
+  color: var(--ColorAzul);
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles--Texto.Verde {
+  color: var(--ColorVerde);
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles:nth-child(2) {
+  border-right: 2px solid var(--ColorGrisClaro);
+  border-left: 2px solid var(--ColorGrisClaro);
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles:nth-child(3) {
+  border-right: 2px solid var(--ColorGrisClaro);
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles:nth-child(3) {
+  flex-direction: column;
+  gap: 10px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton {
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton ion-icon {
+  font-size: 18px;
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton.Eliminar {
+  background-color: var(--ColorRojo);
+  border: 2px solid var(--ColorRojo);
+}
+.CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton.Eliminar:hover {
+  background-color: transparent;
+  color: var(--ColorRojo);
+}
+@media (width <= 1000px) {
+  .CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton {
+    width: 100%;
+  }
+  .CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .CrearInfraccionConceptos__ListaDeConceptos__Titulo {
+    flex-direction: column;
+  }
+}
+@media (max-width: 900px) {
+  .CrearInfraccionConceptos__Botones--Boton {
+    width: 100%;
+  }
+}
+@media (width <= 600px) {
+  .CrearInfraccionConceptos__ListaDeConceptos__Encabezado p {
+    font-size: 12px;
+  }
+  .CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles--Texto {
+    font-size: 14px;
+  }
+  .CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton
+    ion-icon {
+    font-size: 16px;
+  }
+}
+@media (width <= 500px) {
+  .CrearInfraccionConceptos__ListaDeConceptos__Titulo__Texto {
+    font-size: 20px;
+  }
+}
+@media (width <= 400px) {
+  .CrearInfraccionConceptos__ListaDeConceptos__Cuerpo__Detalles__Boton {
+    height: 60px;
+    max-height: 100px;
+  }
+}

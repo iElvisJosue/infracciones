@@ -1,10 +1,18 @@
 /* eslint-disable react/prop-types */
-// IMPORTAMOS LOS HOOKS A USAR
-import useObtenerPersonasActivasPorFiltro from "../../hooks/CrearInfraccion/useObtenerPersonasActivasPorFiltro";
+// LIBRERÍAS A USAR
+import { useEffect } from "react";
 
 // IMPORTAMOS LOS COMPONENTES A USAR
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
+import ControlDePaginacion from "../Globales/ControlDePaginacion";
+
+// IMPORTAMOS LOS HOOKS A USAR
+import useObtenerPersonasActivasPorFiltro from "../../hooks/CrearInfraccion/useObtenerPersonasActivasPorFiltro";
+import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/CrearInfraccion/CrearInfraccionSeleccionarPersona.css";
 
 export default function CrearInfraccionSeleccionarPersona({
   establecerInformacionDeLaPersona,
@@ -12,6 +20,25 @@ export default function CrearInfraccionSeleccionarPersona({
 }) {
   const { personas, cargandoPersonas, establecerFiltroPersonas } =
     useObtenerPersonasActivasPorFiltro();
+  const {
+    CantidadParaMostrar,
+    paginaParaMostrar,
+    indiceInicial,
+    indiceFinal,
+    cantidadDePaginas,
+    establecerCantidadDePaginas,
+    MostrarVeinticincoMas,
+    MostrarVeinticincoMenos,
+    reiniciarValores,
+  } = usePaginacion();
+  useEffect(() => {
+    if (personas) {
+      const CantidadDePaginasEnPersona = Math.ceil(
+        personas.length / CantidadParaMostrar
+      );
+      establecerCantidadDePaginas(CantidadDePaginasEnPersona);
+    }
+  }, [personas]);
 
   const ObtenerPersonas = (event) => {
     const valorIntroducido = event.target.value;
@@ -20,7 +47,7 @@ export default function CrearInfraccionSeleccionarPersona({
     // Comprobamos si el nuevo valor cumple con la expresión regular
     if (regex.test(valorIntroducido)) {
       establecerFiltroPersonas(valorIntroducido);
-      // reiniciarValores();
+      reiniciarValores();
     }
   };
 
@@ -54,8 +81,20 @@ export default function CrearInfraccionSeleccionarPersona({
         <ion-icon name="search-circle"></ion-icon>Obtuvimos {personas.length}{" "}
         resultados{" "}
       </small>
+      {personas.length > CantidadParaMostrar && (
+        <ControlDePaginacion
+          resultadosComponente={personas}
+          paginaParaMostrar={paginaParaMostrar}
+          cantidadDePaginas={cantidadDePaginas}
+          CantidadParaMostrar={CantidadParaMostrar}
+          MostrarVeinticincoMas={MostrarVeinticincoMas}
+          MostrarVeinticincoMenos={MostrarVeinticincoMenos}
+          indiceInicial={indiceInicial}
+          indiceFinal={indiceFinal}
+        />
+      )}
       {personas.length > 0 ? (
-        personas.map((persona) => (
+        personas.slice(indiceInicial, indiceFinal).map((persona) => (
           <section
             className="CrearInfraccionSeleccionarPersona__Persona"
             key={persona.idPersona}

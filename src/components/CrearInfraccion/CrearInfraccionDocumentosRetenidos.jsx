@@ -12,6 +12,9 @@ import useObtenerDocumentosActivos from "../../hooks/CrearInfraccion/useObtenerD
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
 
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/CrearInfraccion/CrearInfraccionDocumentosRetenidos.css";
+
 export default function CrearInfraccionDocumentosRetenidos({
   informacionDocumentosRetenidos,
   establecerInformacionDocumentosRetenidos,

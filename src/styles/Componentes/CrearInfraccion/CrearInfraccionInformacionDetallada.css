@@ -1,0 +1,93 @@
+.CrearInfraccionInformacionDetallada {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.CrearInfraccionInformacionDetallada {
+  grid-template-columns: repeat(4, 1fr);
+}
+.CrearInfraccionInformacionDetallada__Seccion {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.CrearInfraccionInformacionDetallada__Seccion img {
+  width: 75px;
+  height: 75px;
+}
+.CrearInfraccionInformacionDetallada__Seccion h1 {
+  color: var(--ColorAzul);
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.CrearInfraccionInformacionDetallada__Detalles {
+  grid-column: span 1;
+  background-color: var(--ColorGrisClaro);
+  padding: 10px;
+  text-align: center;
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.CrearInfraccionInformacionDetallada__Detalles.Naranja {
+  background: var(--BgGradiente);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+.CrearInfraccionInformacionDetallada__Detalles.Verde {
+  background: var(--BgGradienteVerde);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+.CrearInfraccionInformacionDetallada__Detalles.Azul {
+  background: var(--BgGradienteAzul);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+.CrearInfraccionInformacionDetallada__Detalles.Rojo {
+  background: var(--BgGradienteRojo);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+
+.CrearInfraccionInformacionDetallada__Detalles.Dos {
+  grid-column: span 2;
+}
+.CrearInfraccionInformacionDetallada__Detalles.Tres {
+  grid-column: span 3;
+}
+.CrearInfraccionInformacionDetallada__Detalles.Completo {
+  grid-column: 1 / -1;
+}
+.CrearInfraccionInformacionDetallada__Detalles ion-icon {
+  font-size: 25px;
+}
+@media (width <= 850px) {
+  .CrearInfraccionInformacionDetallada__Seccion {
+    font-size: 16px;
+  }
+  .CrearInfraccionInformacionDetallada__Seccion img {
+    width: 40px;
+    height: 40px;
+  }
+  .CrearInfraccionInformacionDetallada__Detalles {
+    font-size: 14px;
+  }
+}
+@media (width <= 700px) {
+  .CrearInfraccionInformacionDetallada {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .CrearInfraccionInformacionDetallada__Detalles.Nombre,
+  .CrearInfraccionInformacionDetallada__Detalles.Tres {
+    grid-column: 1 / -1;
+  }
+}

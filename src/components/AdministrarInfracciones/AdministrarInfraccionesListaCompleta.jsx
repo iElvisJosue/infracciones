@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+// LIBRERÍAS A USAR
+import { useEffect } from "react";
 
 // IMPORTAMOS LAS AYUDAS
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
@@ -6,9 +8,14 @@ import { FormatearFecha } from "../../helpers/Generales/Funciones";
 // IMPORTAMOS LOS COMPONENTES A USAR
 import Cargando from "../../components/Globales/Cargando";
 import SinResultados from "../../components/Globales/SinResultados";
+import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useBuscarInfraccionesPorFiltro from "../../hooks/AdministrarInfracciones/useBuscarInfraccionesPorFiltro";
+import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfraccionesListaCompleta.css";
 
 export default function AdministrarInfraccionesListaCompleta({
   EstablecerLosDetallesDeLaInfraccion,
@@ -19,6 +26,25 @@ export default function AdministrarInfraccionesListaCompleta({
     filtroInfracciones,
     establecerFiltroInfracciones,
   } = useBuscarInfraccionesPorFiltro();
+  const {
+    CantidadParaMostrar,
+    paginaParaMostrar,
+    indiceInicial,
+    indiceFinal,
+    cantidadDePaginas,
+    establecerCantidadDePaginas,
+    MostrarVeinticincoMas,
+    MostrarVeinticincoMenos,
+    reiniciarValores,
+  } = usePaginacion();
+  useEffect(() => {
+    if (infracciones) {
+      const CantidadDePaginasEnInfracciones = Math.ceil(
+        infracciones.length / CantidadParaMostrar
+      );
+      establecerCantidadDePaginas(CantidadDePaginasEnInfracciones);
+    }
+  }, [infracciones]);
 
   const BuscarInfraccion = (event) => {
     const valorIntroducido = event.target.value;
@@ -27,6 +53,7 @@ export default function AdministrarInfraccionesListaCompleta({
     // Comprobamos si el nuevo valor cumple con la expresión regular
     if (regex.test(valorIntroducido)) {
       establecerFiltroInfracciones(valorIntroducido);
+      reiniciarValores();
     }
   };
 
@@ -55,6 +82,18 @@ export default function AdministrarInfraccionesListaCompleta({
             <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
             {infracciones.length} resultados{" "}
           </small>
+          {infracciones.length > CantidadParaMostrar && (
+            <ControlDePaginacion
+              resultadosComponente={infracciones}
+              paginaParaMostrar={paginaParaMostrar}
+              cantidadDePaginas={cantidadDePaginas}
+              CantidadParaMostrar={CantidadParaMostrar}
+              MostrarVeinticincoMas={MostrarVeinticincoMas}
+              MostrarVeinticincoMenos={MostrarVeinticincoMenos}
+              indiceInicial={indiceInicial}
+              indiceFinal={indiceFinal}
+            />
+          )}
           <div className="AdministrarInfraccionesListaCompleta__Cuerpo">
             <table className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla">
               <thead className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Encabezado">
@@ -92,37 +131,39 @@ export default function AdministrarInfraccionesListaCompleta({
                 </tr>
               </thead>
               <tbody className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo">
-                {infracciones.map((infInfraccion) => (
-                  <tr key={infInfraccion.idInfraccion}>
-                    <td>{infInfraccion.idInfraccion}</td>
-                    <td>
-                      {infInfraccion.NombrePersona}{" "}
-                      {infInfraccion.ApelledoPaternoPersona}{" "}
-                      {infInfraccion.ApellidoMaternoPersona}
-                    </td>
-                    <td>{infInfraccion.NombreGrua}</td>
-                    <td>{infInfraccion.ClaveInternaAgente}</td>
-                    <td>
-                      {FormatearFecha(
-                        infInfraccion.FechaCreacionInfraccion.slice(0, 10)
-                      )}{" "}
-                      {infInfraccion.HoraCreacionInfraccion}
-                    </td>
-                    <td>
-                      <button
-                        className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo__VerDetalles"
-                        onClick={() =>
-                          EstablecerLosDetallesDeLaInfraccion(
-                            infInfraccion,
-                            true
-                          )
-                        }
-                      >
-                        Ver
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {infracciones
+                  .slice(indiceInicial, indiceFinal)
+                  .map((infInfraccion) => (
+                    <tr key={infInfraccion.idInfraccion}>
+                      <td>{infInfraccion.idInfraccion}</td>
+                      <td>
+                        {infInfraccion.NombrePersona}{" "}
+                        {infInfraccion.ApelledoPaternoPersona}{" "}
+                        {infInfraccion.ApellidoMaternoPersona}
+                      </td>
+                      <td>{infInfraccion.NombreGrua}</td>
+                      <td>{infInfraccion.ClaveInternaAgente}</td>
+                      <td>
+                        {FormatearFecha(
+                          infInfraccion.FechaCreacionInfraccion.slice(0, 10)
+                        )}{" "}
+                        {infInfraccion.HoraCreacionInfraccion}
+                      </td>
+                      <td>
+                        <button
+                          className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo__VerDetalles"
+                          onClick={() =>
+                            EstablecerLosDetallesDeLaInfraccion(
+                              infInfraccion,
+                              true
+                            )
+                          }
+                        >
+                          Ver
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

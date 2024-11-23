@@ -12,6 +12,9 @@ import useObtenerConceptosActivos from "../../hooks/CrearInfraccion/useObtenerCo
 // IMPORTAMOS LAS AYUDAS
 import { CalcularTotalConceptos } from "../../helpers/Generales/Funciones";
 
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/CrearInfraccion/CrearInfraccionConceptos.css";
+
 export default function CrearInfraccionConceptos({
   informacionDelConcepto,
   establecerInformacionDelConcepto,

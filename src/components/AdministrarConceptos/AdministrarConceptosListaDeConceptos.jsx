@@ -1,17 +1,25 @@
 /* eslint-disable react/prop-types */
+// LIBRERÍAS A USAR
+import { useEffect } from "react";
+
 // CONTEXTOS A USAR
 import { useConceptos } from "../../context/ConceptosContext";
 
 // IMPORTAMOS LOS COMPONENTES
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
+import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerConceptosPorFiltro from "../../hooks/AdministrarConceptos/useObtenerConceptosPorFiltro";
+import usePaginacion from "../../hooks/Paginacion/usePagicacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
+
+// ESTILOS A USAR
+import "../../styles/Componentes/AdministrarConceptos/AdministrarConceptosListaDeConceptos.css";
 
 export default function AdministrarConceptosListaDeConceptos({
   obtenerConceptosNuevamente,
@@ -20,13 +28,29 @@ export default function AdministrarConceptosListaDeConceptos({
   establecerInformacionDelConcepto,
 }) {
   const { ActivarDesactivarConcepto } = useConceptos();
+  const { conceptos, cargandoConceptos, establecerFiltroConceptos } =
+    useObtenerConceptosPorFiltro({
+      obtenerConceptosNuevamente,
+    });
   const {
-    conceptos,
-    cargandoConceptos,
-    // establecerFiltroConceptos,
-  } = useObtenerConceptosPorFiltro({
-    obtenerConceptosNuevamente,
-  });
+    CantidadParaMostrar,
+    paginaParaMostrar,
+    indiceInicial,
+    indiceFinal,
+    cantidadDePaginas,
+    establecerCantidadDePaginas,
+    MostrarVeinticincoMas,
+    MostrarVeinticincoMenos,
+    reiniciarValores,
+  } = usePaginacion();
+  useEffect(() => {
+    if (conceptos) {
+      const CantidadDePaginasEnConceptos = Math.ceil(
+        conceptos.length / CantidadParaMostrar
+      );
+      establecerCantidadDePaginas(CantidadDePaginasEnConceptos);
+    }
+  }, [conceptos]);
 
   const PeticionActivarDesactivarConcepto = async (
     idListaConcepto,
@@ -51,16 +75,16 @@ export default function AdministrarConceptosListaDeConceptos({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  // const ObtenerLosProductos = (event) => {
-  //   const valorIntroducido = event.target.value;
-  //   // Utilizamos una expresión regular para permitir letras, números y "-"
-  //   const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-  //   // Comprobamos si el nuevo valor cumple con la expresión regular
-  //   if (regex.test(valorIntroducido)) {
-  //     establecerFiltroProductos(valorIntroducido);
-  //     reiniciarValores();
-  //   }
-  // };
+  const BuscarConceptos = (event) => {
+    const valorIntroducido = event.target.value;
+    // Utilizamos una expresión regular para permitir letras, números y "-"
+    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
+    // Comprobamos si el nuevo valor cumple con la expresión regular
+    if (regex.test(valorIntroducido)) {
+      establecerFiltroConceptos(valorIntroducido);
+      reiniciarValores();
+    }
+  };
   const CambiarVistaParaEditarConcepto = (infConcepto) => {
     establecerInformacionDelConcepto(infConcepto);
     establecerVistaAdministrarConceptos(1);
@@ -74,27 +98,53 @@ export default function AdministrarConceptosListaDeConceptos({
       <h1 className="AdministrarConceptos__Lista--Titulo">
         Lista de conceptos <br /> 📃
       </h1>
+      <span className="AdministrarConceptos__Lista--Buscar">
+        <input
+          type="text"
+          placeholder="Buscar concepto"
+          onChange={BuscarConceptos}
+        />
+        <span className="AdministrarConceptos__Lista--Buscar--Lupa">
+          <ion-icon name="search"></ion-icon>
+        </span>
+      </span>
       {conceptos.length > 0 ? (
         <>
           <h3 className="AdministrarConceptos__Lista__Subtitulo">
             Estatus de los conceptos:
           </h3>
-          <span className="AdministrarConceptos__Clasificacion">
-            <p className="AdministrarConceptos__Clasificacion--Texto Activa">
+          <span className="AdministrarConceptos__Lista__Clasificacion">
+            <p className="AdministrarConceptos__Lista__Clasificacion--Texto Activa">
               <ion-icon name="help-circle"></ion-icon> Activo
             </p>
-            <p className="AdministrarConceptos__Clasificacion--Texto Desactivada">
+            <p className="AdministrarConceptos__Lista__Clasificacion--Texto Desactivada">
               <ion-icon name="ban"></ion-icon> Desactivado
             </p>
           </span>
-          {conceptos.map((infConcepto) => (
+          <small className="AdministrarConceptos__Lista--TextoResultados">
+            <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
+            {conceptos.length} resultados{" "}
+          </small>
+          {conceptos.length > CantidadParaMostrar && (
+            <ControlDePaginacion
+              resultadosComponente={conceptos}
+              paginaParaMostrar={paginaParaMostrar}
+              cantidadDePaginas={cantidadDePaginas}
+              CantidadParaMostrar={CantidadParaMostrar}
+              MostrarVeinticincoMas={MostrarVeinticincoMas}
+              MostrarVeinticincoMenos={MostrarVeinticincoMenos}
+              indiceInicial={indiceInicial}
+              indiceFinal={indiceFinal}
+            />
+          )}
+          {conceptos.slice(indiceInicial, indiceFinal).map((infConcepto) => (
             <section
-              className={`AdministrarConceptos__Concepto ${
+              className={`AdministrarConceptos__Lista__Concepto ${
                 infConcepto.ActivoConcepto === ACTIVO ? "Si" : "No"
               }`}
               key={infConcepto.idListaConcepto}
             >
-              <span className="AdministrarConceptos__Concepto__Detalles">
+              <span className="AdministrarConceptos__Lista__Concepto__Detalles">
                 {infConcepto.ActivoConcepto === ACTIVO ? (
                   <img src="imagenes/Conceptos.png" alt="Logo Concepto" />
                 ) : (
@@ -114,7 +164,7 @@ export default function AdministrarConceptosListaDeConceptos({
                   </>
                 )}
                 <span
-                  className={`AdministrarConceptos__Concepto__Detalles--Activa ${
+                  className={`AdministrarConceptos__Lista__Concepto__Detalles--Activa ${
                     infConcepto.ActivoConcepto === ACTIVO ? "Si" : "No"
                   }`}
                 >
@@ -146,9 +196,9 @@ export default function AdministrarConceptosListaDeConceptos({
                 </span>
               </span>
               {infConcepto.ActivoConcepto === ACTIVO && (
-                <span className="AdministrarConceptos__Concepto__Opciones">
+                <span className="AdministrarConceptos__Lista__Concepto__Opciones">
                   <button
-                    className="AdministrarConceptos__Concepto__Opciones--Boton"
+                    className="AdministrarConceptos__Lista__Concepto__Opciones--Boton"
                     title="Editar Concepto"
                     onClick={() => {
                       CambiarVistaParaEditarConcepto(infConcepto);

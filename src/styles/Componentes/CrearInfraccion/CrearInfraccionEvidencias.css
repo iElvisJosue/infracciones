@@ -1,0 +1,123 @@
+.CrearInfraccionEvidencias {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.CrearInfraccionEvidencias {
+  grid-template-columns: repeat(3, 1fr);
+}
+.CrearInfraccionEvidencias--Titulo {
+  grid-column: 1 / -1;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+  text-align: center;
+  margin-top: 10px;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias {
+  grid-column: 1 / -1;
+  padding: 10px;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Encabezado {
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  margin-top: 15px;
+  background: var(--BgGradienteAzul);
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+
+  display: flex;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Encabezado p {
+  width: 100%;
+  color: var(--ColorBlanco);
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Cuerpo {
+  display: flex;
+  border: 2px solid var(--ColorGrisClaro);
+  border-top: none;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Cuerpo__Detalles {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  color: var(--ColorNegro);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Cuerpo__Detalles--Texto {
+  text-align: center;
+  color: var(--ColorNegro);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Cuerpo__Detalles--Texto.Azul {
+  color: var(--ColorAzul);
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Cuerpo__Detalles--Texto.Verde {
+  color: var(--ColorVerde);
+}
+.CrearInfraccionEvidencias__ListaDeEvidencias__Cuerpo__Detalles:nth-child(2) {
+  border-right: 2px solid var(--ColorGrisClaro);
+  border-left: 2px solid var(--ColorGrisClaro);
+}
+.CrearInfraccionEvidencias__Imagen {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CrearInfraccionEvidencias__Imagen img {
+  width: 150px;
+}
+.CrearInfraccionEvidencias__Texto {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ColorNaranja);
+  font-style: italic;
+  font-weight: bold;
+}
+.CrearInfraccionEvidencias__SeleccionarImagenes {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CrearInfraccionEvidencias__SeleccionarImagenes__Label {
+  width: 250px;
+  height: 100%;
+  padding: 20px;
+  border: 2px dashed var(--ColorNaranja);
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (width <= 500px) {
+  .CrearInfraccionEvidencias__SeleccionarImagenes__Label {
+    width: 100%;
+  }
+}

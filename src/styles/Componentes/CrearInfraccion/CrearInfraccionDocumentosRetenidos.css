@@ -1,0 +1,234 @@
+.CrearInfraccionDocumentosRetenidos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.CrearInfraccionDocumentosRetenidos {
+  grid-template-columns: repeat(3, 1fr);
+}
+.CrearInfraccionDocumentosRetenidos--Titulo {
+  grid-column: 1 / -1;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+  text-align: center;
+  margin-top: 10px;
+}
+.CrearInfraccionDocumentosRetenidos__Botones {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.CrearInfraccionDocumentosRetenidos__Botones--Boton {
+  width: 250px;
+  min-height: 50px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.CrearInfraccionDocumentosRetenidos__Botones--Boton:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+.CrearInfraccionDocumentosRetenidos__Botones--Boton.Agregar {
+  background: var(--BgGradienteVerde);
+}
+.CrearInfraccionDocumentosRetenidos__Botones--Boton.Siguiente {
+  background: var(--BgGradienteAzul);
+}
+.CrearInfraccionDocumentosRetenidos__Botones--Boton ion-icon {
+  font-size: 18px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos {
+  grid-column: 1 / -1;
+  padding: 10px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Titulo__Texto {
+  color: var(--ColorAzul);
+  font-weight: bold;
+  font-size: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Encabezado {
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  margin-top: 15px;
+  background: var(--BgGradienteAzul);
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+
+  display: flex;
+}
+.Parrafo--Documento,
+.Parrafo--Folio,
+.Parrafo--Observaciones,
+.Parrafo--Opciones {
+  width: 25%;
+  color: var(--ColorBlanco);
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Parrafo--Documento::after {
+  content: "Documento";
+}
+.Parrafo--Folio::after {
+  content: "Folio";
+}
+.Parrafo--Observaciones::after {
+  content: "Observaciones";
+}
+.Parrafo--Opciones::after {
+  content: "Opciones";
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo {
+  display: flex;
+  border: 2px solid var(--ColorGrisClaro);
+  border-top: none;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  color: var(--ColorNegro);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles {
+  width: 25%;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles--Texto {
+  width: 100%;
+  text-align: center;
+  color: var(--ColorNegro);
+  overflow: hidden;
+  text-overflow: ellipsis; /* Muestra "..." si el texto es muy largo */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles--Texto.Azul {
+  color: var(--ColorAzul);
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles--Texto.Verde {
+  color: var(--ColorVerde);
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles:nth-child(
+    2
+  ) {
+  border-right: 2px solid var(--ColorGrisClaro);
+  border-left: 2px solid var(--ColorGrisClaro);
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles:nth-child(
+    3
+  ) {
+  border-right: 2px solid var(--ColorGrisClaro);
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles:nth-child(
+    3
+  ) {
+  flex-direction: column;
+  gap: 10px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton {
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+  color: var(--ColorBlanco);
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton
+  ion-icon {
+  font-size: 18px;
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton.Eliminar {
+  background-color: var(--ColorRojo);
+  border: 2px solid var(--ColorRojo);
+}
+.CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton.Eliminar:hover {
+  background-color: transparent;
+  color: var(--ColorRojo);
+}
+@media (width <= 1000px) {
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton {
+    width: 100%;
+  }
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Titulo {
+    flex-direction: column;
+  }
+}
+@media (width <= 600px) {
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Encabezado p {
+    font-size: 12px;
+  }
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles--Texto {
+    font-size: 14px;
+  }
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton {
+    font-size: 16px;
+  }
+  .Parrafo--Documento::after {
+    content: "Doc.";
+  }
+  .Parrafo--Observaciones::after {
+    content: "Obs.";
+  }
+  .Parrafo--Opciones::after {
+    content: "Opc.";
+  }
+}
+@media (width <= 500px) {
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Titulo__Texto {
+    font-size: 20px;
+  }
+}
+@media (width <= 400px) {
+  .CrearInfraccionDocumentosRetenidos__ListaDeDocumentos__Cuerpo__Detalles__Boton {
+    height: 60px;
+    max-height: 100px;
+  }
+}

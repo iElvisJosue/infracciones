@@ -15,6 +15,9 @@ import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/Manejar
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
 import { toast } from "react-toastify";
 
+// ESTILOS A USAR
+import "../../styles/Componentes/AdministrarAgentes/AdministrarAgentesFormulario.css";
+
 export default function AdministrarAgentesFormulario({
   obtenerAgentesNuevamente,
   establecerObtenerAgentesNuevamente,

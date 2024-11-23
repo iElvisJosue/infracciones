@@ -1,0 +1,127 @@
+.MisInfraccionesPorFecha {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  gap: 25px;
+}
+.MisInfraccionesPorFecha__Titulo {
+  grid-column: 1 / -1;
+  color: var(--ColorNaranja);
+  text-align: center;
+  font-size: 25px;
+  text-transform: uppercase;
+
+  display: flex;
+  flex-direction: column;
+}
+.MisInfraccionesPorFecha__Titulo--Fechas {
+  font-size: 12px;
+  color: var(--ColorRojo);
+}
+.MisInfraccionesPorFecha__Botones {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.MisInfraccionesPorFecha__Botones--Boton {
+  width: auto;
+  padding: 0 10px;
+  min-height: 50px;
+  height: 50px;
+  max-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  background: var(--BgGradiente);
+  border: none;
+  color: var(--ColorNegro);
+  margin-top: 10px;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+}
+.MisInfraccionesPorFecha__TextoResultados {
+  grid-column: 1 / -1;
+  color: var(--ColorVerde);
+  text-align: right;
+  font-style: italic;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.MisInfraccionesPorFecha__TextoResultados ion-icon {
+  font-size: 20px;
+}
+.MisInfraccionesPorFecha__Cuerpo {
+  grid-column: 1 / -1;
+  overflow-x: auto;
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th {
+  background: var(--BgGradiente);
+  color: var(--ColorBlanco);
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px;
+  min-width: 200px;
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th ion-icon {
+  font-size: 20px;
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo {
+  background-color: var(--ColorBlanco);
+  text-align: center;
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  border-right: 2px solid var(--ColorGrisClaro);
+  border-bottom: 2px solid var(--ColorGrisClaro);
+  border-left: 2px solid var(--ColorGrisClaro);
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles {
+  cursor: pointer;
+  background-color: var(--ColorAzul);
+  border: 2px solid var(--ColorAzul);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+  font-size: 12px;
+  width: 50px;
+  height: 35px;
+  transition: 0.3s ease-in-out all;
+}
+.MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles:hover {
+  background-color: transparent;
+  color: var(--ColorAzul);
+}
+@media (max-width: 500px) {
+  .MisInfraccionesPorFecha__Titulo {
+    font-size: 20px;
+  }
+  .MisInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th ion-icon {
+    font-size: 16px;
+  }
+  .MisInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th {
+    font-size: 14px;
+  }
+  .MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
+    font-size: 12px;
+  }
+  .MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
+    padding: 5px;
+  }
+  .MisInfraccionesPorFecha__TextoResultados {
+    font-size: 12px;
+  }
+  .MisInfraccionesPorFecha__TextoResultados ion-icon {
+    font-size: 16px;
+  }
+}

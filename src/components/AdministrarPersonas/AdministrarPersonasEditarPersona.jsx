@@ -16,7 +16,8 @@ import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidacio
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
 
-export default function AdministrarPersonasFormulario({
+// LOS ESTILOS ESTÁN EN AdministrarPersonasFormulario.css
+export default function AdministrarPersonasEditarPersona({
   informacionDeLaPersona,
   establecerVistaAdministrarPersonas,
   obtenerPersonasNuevamente,

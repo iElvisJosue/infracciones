@@ -1,0 +1,93 @@
+.MisInfraccionesDetalles {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+}
+.MisInfraccionesDetalles {
+  grid-template-columns: repeat(4, 1fr);
+}
+.MisInfraccionesDetalles__Seccion {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.MisInfraccionesDetalles__Seccion img {
+  width: 75px;
+  height: 75px;
+}
+.MisInfraccionesDetalles__Seccion h1 {
+  color: var(--ColorAzul);
+  text-transform: uppercase;
+  font-size: 22px;
+}
+.MisInfraccionesDetalles__Detalles {
+  grid-column: span 1;
+  background-color: var(--ColorGrisClaro);
+  padding: 10px;
+  text-align: center;
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.MisInfraccionesDetalles__Detalles.Naranja {
+  background: var(--BgGradiente);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+.MisInfraccionesDetalles__Detalles.Verde {
+  background: var(--BgGradienteVerde);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+.MisInfraccionesDetalles__Detalles.Azul {
+  background: var(--BgGradienteAzul);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+.MisInfraccionesDetalles__Detalles.Rojo {
+  background: var(--BgGradienteRojo);
+  color: var(--ColorBlanco);
+  font-weight: bold;
+}
+
+.MisInfraccionesDetalles__Detalles.Dos {
+  grid-column: span 2;
+}
+.MisInfraccionesDetalles__Detalles.Tres {
+  grid-column: span 3;
+}
+.MisInfraccionesDetalles__Detalles.Completo {
+  grid-column: 1 / -1;
+}
+.MisInfraccionesDetalles__Detalles ion-icon {
+  font-size: 25px;
+}
+@media (width <= 850px) {
+  .MisInfraccionesDetalles__Seccion {
+    font-size: 16px;
+  }
+  .MisInfraccionesDetalles__Seccion img {
+    width: 40px;
+    height: 40px;
+  }
+  .MisInfraccionesDetalles__Detalles {
+    font-size: 14px;
+  }
+}
+@media (width <= 700px) {
+  .MisInfraccionesDetalles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .MisInfraccionesDetalles__Detalles.Nombre,
+  .MisInfraccionesDetalles__Detalles.Tres {
+    grid-column: 1 / -1;
+  }
+}

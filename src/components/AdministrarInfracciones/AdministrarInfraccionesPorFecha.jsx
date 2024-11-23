@@ -10,6 +10,9 @@ import { FormatearFecha } from "../../helpers/Generales/Funciones";
 // IMPORTAMOS LOS HOOKS A USAR
 import useBuscarInfraccionesPorFecha from "../../hooks/AdministrarInfracciones/useBuscarInfraccionesPorFecha";
 
+// IMPORTAMOS LOS ESTILOS
+import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfraccionesPorFecha.css";
+
 export default function AdministrarInfraccionesPorFecha({
   EstablecerLosDetallesDeLaInfraccion,
 }) {

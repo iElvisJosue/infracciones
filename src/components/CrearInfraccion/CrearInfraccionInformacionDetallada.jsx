@@ -2,6 +2,9 @@
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 
+// ESTILOS A USAR
+import "../../styles/Componentes/CrearInfraccion/CrearInfraccionInformacionDetallada.css";
+
 export default function CrearInfraccionInformacionDetallada({
   informacionDeLaPersona,
   informacionDeLaInfraccion,
