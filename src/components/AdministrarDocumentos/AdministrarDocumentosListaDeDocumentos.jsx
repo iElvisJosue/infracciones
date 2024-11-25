@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // CONTEXTOS A USAR
 import { useDocumentos } from "../../context/DocumentosContext";
@@ -9,10 +9,13 @@ import { useDocumentos } from "../../context/DocumentosContext";
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerDocumentosPorFiltro from "../../hooks/AdministrarDocumentos/useObtenerDocumentosPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
@@ -28,6 +31,7 @@ export default function AdministrarDocumentosListaDeDocumentos({
   establecerInformacionDelDocumento,
 }) {
   const { ActivarDesactivarDocumento } = useDocumentos();
+  const [mostrarLista, establecerMostrarLista] = useState(true);
   const { documentos, cargandoDocumentos, establecerFiltroDocumentos } =
     useObtenerDocumentosPorFiltro({
       obtenerDocumentosNuevamente,
@@ -75,41 +79,35 @@ export default function AdministrarDocumentosListaDeDocumentos({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  const BuscarDocumentos = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroDocumentos(valorIntroducido);
-      reiniciarValores();
-    }
-  };
   const CambiarVistaParaEditarDocumento = (infDocumento) => {
     establecerInformacionDelDocumento(infDocumento);
     establecerVistaAdministrarDocumentos(1);
   };
+
+  const claseLista = mostrarLista
+    ? "AdministrarDocumentos__Lista"
+    : "AdministrarDocumentos__Lista Ocultar";
   const ACTIVO = "Activo";
 
   if (cargandoDocumentos) return <Cargando />;
 
   return (
-    <div className="AdministrarDocumentos__Lista">
-      <h1 className="AdministrarDocumentos__Lista--Titulo">
-        Lista de documentos <br /> 📃
-      </h1>
-      <span className="AdministrarDocumentos__Lista--Buscar">
-        <input
-          type="text"
-          placeholder="Buscar documento"
-          onChange={BuscarDocumentos}
-        />
-        <span className="AdministrarDocumentos__Lista--Buscar--Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
+    <div className={claseLista}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarLista}
+        establecerMostrarContenido={establecerMostrarLista}
+      >
+        Lista de documentos
+      </TituloSeccion>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroDocumentos}
+        placeholder="Nombre del documento"
+        reiniciarValores={reiniciarValores}
+      />
       {documentos.length > 0 ? (
         <>
+          <TextoResultados listaContenido={documentos} />
           <h3 className="AdministrarDocumentos__Lista__Subtitulo">
             Estatus de los documentos:
           </h3>
@@ -121,10 +119,6 @@ export default function AdministrarDocumentosListaDeDocumentos({
               <ion-icon name="ban"></ion-icon> Desactivado
             </p>
           </span>
-          <small className="AdministrarDocumentos__Lista--TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
-            {documentos.length} resultados{" "}
-          </small>
           {documentos.length > CantidadParaMostrar && (
             <ControlDePaginacion
               resultadosComponente={documentos}

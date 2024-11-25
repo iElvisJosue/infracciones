@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -8,6 +9,7 @@ import { useGruas } from "../../context/GruasContext";
 
 // COMPONENTES A USAR
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -22,6 +24,7 @@ export default function AdministrarGruasFormulario({
   establecerObtenerGruasNuevamente,
 }) {
   const { RegistrarGrua } = useGruas();
+  const [mostrarFormulario, establecerMostrarFormulario] = useState(true);
   const {
     handleSubmit,
     register,
@@ -64,14 +67,20 @@ export default function AdministrarGruasFormulario({
       />
     );
   };
+
+  const claseFormulario = mostrarFormulario
+    ? "AdministrarGruas__Formulario"
+    : "AdministrarGruas__Formulario Ocultar";
+
   return (
-    <form
-      className="AdministrarGruas__Formulario"
-      onSubmit={PeticionParaRegistrarGrua}
-    >
-      <h1 className="AdministrarGruas__Formulario--Titulo">
-        Registrar nueva grúa <br /> 👩‍💻
-      </h1>
+    <form className={claseFormulario} onSubmit={PeticionParaRegistrarGrua}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarFormulario}
+        establecerMostrarContenido={establecerMostrarFormulario}
+      >
+        Registrar Grúa
+      </TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="hammer"></ion-icon> Nombre de la grúa

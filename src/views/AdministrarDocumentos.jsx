@@ -40,22 +40,18 @@ export default function AdministrarDocumentos() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Administrar Documentos" />
-      <div className="Main__Contenedor">
-        <section className="AdministrarDocumentos">
-          {vistaAdministrarDocumentos === 0 ? (
-            <>
-              <AdministrarDocumentosFormulario {...PropsParaLosComponentes} />
-              <AdministrarDocumentosListaDeDocumentos
-                {...PropsParaLosComponentes}
-              />
-            </>
-          ) : (
-            <AdministrarDocumentosEditarDocumento
+      <section className="AdministrarDocumentos">
+        {vistaAdministrarDocumentos === 0 ? (
+          <>
+            <AdministrarDocumentosFormulario {...PropsParaLosComponentes} />
+            <AdministrarDocumentosListaDeDocumentos
               {...PropsParaLosComponentes}
             />
-          )}
-        </section>
-      </div>
+          </>
+        ) : (
+          <AdministrarDocumentosEditarDocumento {...PropsParaLosComponentes} />
+        )}
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

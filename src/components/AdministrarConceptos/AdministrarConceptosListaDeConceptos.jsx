@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // CONTEXTOS A USAR
 import { useConceptos } from "../../context/ConceptosContext";
@@ -9,10 +9,13 @@ import { useConceptos } from "../../context/ConceptosContext";
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerConceptosPorFiltro from "../../hooks/AdministrarConceptos/useObtenerConceptosPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
@@ -28,6 +31,7 @@ export default function AdministrarConceptosListaDeConceptos({
   establecerInformacionDelConcepto,
 }) {
   const { ActivarDesactivarConcepto } = useConceptos();
+  const [mostrarLista, establecerMostrarLista] = useState(true);
   const { conceptos, cargandoConceptos, establecerFiltroConceptos } =
     useObtenerConceptosPorFiltro({
       obtenerConceptosNuevamente,
@@ -75,41 +79,35 @@ export default function AdministrarConceptosListaDeConceptos({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  const BuscarConceptos = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroConceptos(valorIntroducido);
-      reiniciarValores();
-    }
-  };
   const CambiarVistaParaEditarConcepto = (infConcepto) => {
     establecerInformacionDelConcepto(infConcepto);
     establecerVistaAdministrarConceptos(1);
   };
+
+  const claseLista = mostrarLista
+    ? "AdministrarConceptos__Lista"
+    : "AdministrarConceptos__Lista Ocultar";
   const ACTIVO = "Activo";
 
   if (cargandoConceptos) return <Cargando />;
 
   return (
-    <div className="AdministrarConceptos__Lista">
-      <h1 className="AdministrarConceptos__Lista--Titulo">
-        Lista de conceptos <br /> 📃
-      </h1>
-      <span className="AdministrarConceptos__Lista--Buscar">
-        <input
-          type="text"
-          placeholder="Buscar concepto"
-          onChange={BuscarConceptos}
-        />
-        <span className="AdministrarConceptos__Lista--Buscar--Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
+    <div className={claseLista}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarLista}
+        establecerMostrarContenido={establecerMostrarLista}
+      >
+        Lista de conceptos
+      </TituloSeccion>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroConceptos}
+        placeholder="Nombre del concepto"
+        reiniciarValores={reiniciarValores}
+      />
       {conceptos.length > 0 ? (
         <>
+          <TextoResultados listaContenido={conceptos} />
           <h3 className="AdministrarConceptos__Lista__Subtitulo">
             Estatus de los conceptos:
           </h3>
@@ -121,10 +119,6 @@ export default function AdministrarConceptosListaDeConceptos({
               <ion-icon name="ban"></ion-icon> Desactivado
             </p>
           </span>
-          <small className="AdministrarConceptos__Lista--TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
-            {conceptos.length} resultados{" "}
-          </small>
           {conceptos.length > CantidadParaMostrar && (
             <ControlDePaginacion
               resultadosComponente={conceptos}

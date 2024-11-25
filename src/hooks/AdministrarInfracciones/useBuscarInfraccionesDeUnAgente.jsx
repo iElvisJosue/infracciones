@@ -7,40 +7,39 @@ import { useInfracciones } from "../../context/InfraccionesContext";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 
-export default function useBuscarInfraccionesPorAgenteYFiltro({ idAgente }) {
-  const { BuscarInfraccionesPorAgenteYFiltro } = useInfracciones();
+export default function useBuscarInfraccionesDeUnAgente(idAgente) {
+  const { BuscarInfraccionesDeUnAgente } = useInfracciones();
 
-  const [infracciones, establecerInfracciones] = useState([]);
-  const [cargandoInfracciones, establecerCargandoInfracciones] = useState(true);
-  const [filtroInfracciones, establecerFiltroInfracciones] = useState("");
+  const [infraccionesDelAgente, establecerInfraccionesDelAgente] = useState([]);
+  const [
+    cargandoInfraccionesDelAgente,
+    establecerCargandoInfraccionesDelAgente,
+  ] = useState(true);
 
   useEffect(() => {
     const buscarInfracciones = async () => {
       try {
-        const res = await BuscarInfraccionesPorAgenteYFiltro({
+        const res = await BuscarInfraccionesDeUnAgente({
           CookieConToken: COOKIE_CON_TOKEN,
           idAgente,
-          filtro: filtroInfracciones,
         });
         if (res.response) {
           const { status, data } = res.response;
           MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
         } else {
-          establecerInfracciones(res.data);
+          establecerInfraccionesDelAgente(res.data);
         }
-        establecerCargandoInfracciones(false);
+        establecerCargandoInfraccionesDelAgente(false);
       } catch (error) {
         const { status, data } = error.response;
         MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
       }
     };
     buscarInfracciones();
-  }, [filtroInfracciones]);
+  }, []);
 
   return {
-    infracciones,
-    cargandoInfracciones,
-    filtroInfracciones,
-    establecerFiltroInfracciones,
+    infraccionesDelAgente,
+    cargandoInfraccionesDelAgente,
   };
 }

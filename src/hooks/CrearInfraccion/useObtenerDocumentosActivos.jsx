@@ -24,7 +24,8 @@ export default function useObtenerDocumentosActivos() {
           establecerDocumentos(res.data);
         }
       } catch (error) {
-        console.log(error);
+        const { status, data } = error.response;
+        MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
       }
     };
     obtenerDocumentos();

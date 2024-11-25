@@ -9,6 +9,19 @@ export const ObtenerFechaActual = () => {
   return new Date(now - tzoffset).toISOString().split("T")[0];
 };
 
+export const ObtenerHoraActual = () => {
+  const ahora = new Date();
+  const formatoHora = new Intl.DateTimeFormat("es-MX", {
+    timeZone: "America/Mexico_City",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  return formatoHora.format(ahora);
+};
+
 export const CalcularTotalConceptos = (Conceptos) => {
   const total = Conceptos.reduce(
     (acumulador, item) => acumulador + item.ImporteConcepto,

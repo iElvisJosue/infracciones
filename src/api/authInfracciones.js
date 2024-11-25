@@ -27,3 +27,11 @@ export const SolicitudBuscarInfraccionesPorAgenteYFiltro = (data) =>
 // SOLICITUD BUSCAR INFRACCIONES POR AGENTE Y FECHA
 export const SolicitudBuscarInfraccionesPorAgenteYFecha = (data) =>
   axios.post("/infracciones/BuscarInfraccionesPorAgenteYFecha", data);
+
+export const SolicitudBuscarInfraccionesDeUnAgente = ({
+  CookieConToken,
+  idAgente,
+}) =>
+  axios.get(
+    `/infracciones/BuscarInfraccionesDeUnAgente/${CookieConToken}/${idAgente}`
+  );

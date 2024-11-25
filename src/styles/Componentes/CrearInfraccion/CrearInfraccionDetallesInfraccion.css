@@ -1,18 +1,19 @@
 .CrearInfraccionDetallesInfraccion {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-}
-.CrearInfraccionDetallesInfraccion {
   grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 .CrearInfraccionDetallesInfraccion--Titulo {
   grid-column: 1 / -1;
-  font-size: 22px;
+  font-size: 20px;
   text-transform: uppercase;
   font-weight: bold;
   color: var(--ColorNaranja);
   text-align: center;
-  margin-top: 10px;
+}
+@media (width <= 500px) {
+  .CrearInfraccionDetallesInfraccion--Titulo {
+    font-size: 18px;
+  }
 }

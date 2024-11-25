@@ -6,11 +6,13 @@ import { useEffect } from "react";
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerGruasActivarPorFiltro from "../../hooks/CrearInfraccion/useObtenerGruasActivarPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/Componentes/CrearInfraccion/CrearInfraccionSeleccionarGrua.css";
@@ -41,17 +43,6 @@ export default function CrearInfraccionSeleccionarGrua({
     }
   }, [gruas]);
 
-  const BuscarGruas = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroGruas(valorIntroducido);
-      reiniciarValores();
-    }
-  };
-
   const EstablecerGruaYVista = (persona) => {
     establecerInformacionDeLaGrua(persona);
     establecerVistaCrearInfraccion(3);
@@ -72,16 +63,11 @@ export default function CrearInfraccionSeleccionarGrua({
         Paso 3/6 <br />
         Selecciona la grúa <br /> 👥
       </h1>
-      <span className="CrearInfraccionSeleccionarGrua__Buscar">
-        <input type="text" placeholder="Buscar grúa" onChange={BuscarGruas} />
-        <span className="CrearInfraccionSeleccionarGrua__Buscar__Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
-      <small className="CrearInfraccionSeleccionarGrua__TextoResultados">
-        <ion-icon name="search-circle"></ion-icon>Obtuvimos {gruas.length}{" "}
-        resultados{" "}
-      </small>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroGruas}
+        placeholder="Nombre de la grúa"
+        reiniciarValores={reiniciarValores}
+      />
       {gruas.length > CantidadParaMostrar && (
         <ControlDePaginacion
           resultadosComponente={gruas}
@@ -94,6 +80,7 @@ export default function CrearInfraccionSeleccionarGrua({
           indiceFinal={indiceFinal}
         />
       )}
+      {gruas.length > 0 && <TextoResultados listaContenido={gruas} />}
       {gruas.length > 0 ? (
         gruas.slice(indiceInicial, indiceFinal).map((grua) => (
           <section

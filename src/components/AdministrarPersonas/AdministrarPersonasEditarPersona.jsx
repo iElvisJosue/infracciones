@@ -10,6 +10,7 @@ import { usePersonas } from "../../context/PersonasContext";
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -97,9 +98,7 @@ export default function AdministrarPersonasEditarPersona({
         FuncionRegresar={establecerVistaAdministrarPersonas}
         VistaRegresar={0}
       />
-      <h1 className="AdministrarPersonas__Formulario--Titulo">
-        Actualizar persona <br /> ✍
-      </h1>
+      <TituloSeccion>Actualizar Persona</TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="person-circle"></ion-icon> Tipo persona

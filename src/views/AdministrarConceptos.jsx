@@ -40,20 +40,18 @@ export default function AdministrarConceptos() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Administrar Conceptos" />
-      <div className="Main__Contenedor">
-        <section className="AdministrarConceptos">
-          {vistaAdministrarConceptos === 0 ? (
-            <>
-              <AdministrarConceptosFormulario {...PropsParaLosComponentes} />
-              <AdministrarConceptosListaDeConceptos
-                {...PropsParaLosComponentes}
-              />
-            </>
-          ) : (
-            <AdministrarConceptosEditarConcepto {...PropsParaLosComponentes} />
-          )}
-        </section>
-      </div>
+      <section className="AdministrarConceptos">
+        {vistaAdministrarConceptos === 0 ? (
+          <>
+            <AdministrarConceptosFormulario {...PropsParaLosComponentes} />
+            <AdministrarConceptosListaDeConceptos
+              {...PropsParaLosComponentes}
+            />
+          </>
+        ) : (
+          <AdministrarConceptosEditarConcepto {...PropsParaLosComponentes} />
+        )}
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

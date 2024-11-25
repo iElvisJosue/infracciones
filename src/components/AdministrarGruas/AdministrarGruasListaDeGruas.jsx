@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // CONTEXTOS A USAR
 import { useGruas } from "../../context/GruasContext";
@@ -9,10 +9,13 @@ import { useGruas } from "../../context/GruasContext";
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerGruasPorFiltro from "../../hooks/AdministrarGruas/useObtenerGruasPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
@@ -28,6 +31,7 @@ export default function AdministrarGruasListaDeGruas({
   establecerInformacionDeLaGrua,
 }) {
   const { ActivarDesactivarGrua } = useGruas();
+  const [mostrarLista, establecerMostrarLista] = useState(true);
   const { gruas, cargandoGruas, establecerFiltroGruas } =
     useObtenerGruasPorFiltro({
       obtenerGruasNuevamente,
@@ -72,37 +76,35 @@ export default function AdministrarGruasListaDeGruas({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  const BuscarGruas = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroGruas(valorIntroducido);
-      reiniciarValores();
-    }
-  };
   const CambiarVistaParaEditarGrua = (infGrua) => {
     establecerInformacionDeLaGrua(infGrua);
     establecerVistaAdministrarGruas(1);
   };
+
+  const claseLista = mostrarLista
+    ? "AdministrarGruas__Lista"
+    : "AdministrarGruas__Lista Ocultar";
   const SI = "Si";
 
   if (cargandoGruas) return <Cargando />;
 
   return (
-    <div className="AdministrarGruas__Lista">
-      <h1 className="AdministrarGruas__Lista--Titulo">
-        Lista de grúas <br /> 📃
-      </h1>
-      <span className="AdministrarGruas__Lista--Buscar">
-        <input type="text" placeholder="Buscar grúa" onChange={BuscarGruas} />
-        <span className="AdministrarGruas__Lista--Buscar--Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
+    <div className={claseLista}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarLista}
+        establecerMostrarContenido={establecerMostrarLista}
+      >
+        Lista de grúas
+      </TituloSeccion>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroGruas}
+        placeholder="Buscar grúa"
+        reiniciarValores={reiniciarValores}
+      />
       {gruas.length > 0 ? (
         <>
+          <TextoResultados listaContenido={gruas} />
           <h3 className="AdministrarGruas__Lista__Subtitulo">
             Estatus de las grúas:
           </h3>
@@ -114,10 +116,6 @@ export default function AdministrarGruasListaDeGruas({
               <ion-icon name="ban"></ion-icon> Desactivada
             </p>
           </span>
-          <small className="AdministrarGruas__Lista--TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos {gruas.length}{" "}
-            resultados{" "}
-          </small>
           {gruas.length > CantidadParaMostrar && (
             <ControlDePaginacion
               resultadosComponente={gruas}

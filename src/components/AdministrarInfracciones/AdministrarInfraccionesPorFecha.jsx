@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 
 // IMPORTAMOS LOS COMPONENTES A USAR
-import Cargando from "../../components/Globales/Cargando";
-import SinResultados from "../../components/Globales/SinResultados";
+import Cargando from "../Globales/Cargando";
+import SinResultados from "../Globales/SinResultados";
+import TextoResultados from "../Globales/TextoResultados";
 
 // IMPORTAMOS LAS AYUDAS
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
@@ -63,10 +64,7 @@ export default function AdministrarInfraccionesPorFecha({
       </div>
       {infraccionesPorFecha.length > 0 ? (
         <>
-          <small className="AdministrarInfraccionesPorFecha__TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
-            {infraccionesPorFecha.length} resultados{" "}
-          </small>
+          <TextoResultados listaContenido={infraccionesPorFecha} />
           <div className="AdministrarInfraccionesPorFecha__Cuerpo">
             <table className="AdministrarInfraccionesPorFecha__Cuerpo__Tabla">
               <thead className="AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Encabezado">

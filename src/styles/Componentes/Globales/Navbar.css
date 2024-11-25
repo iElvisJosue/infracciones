@@ -35,15 +35,18 @@
   transform: scale(1.1);
 }
 .Navbar__Titulo {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;
 }
-.Navbar__Logo {
-  background: var(--BgGradiente);
+.Navbar__FotoAgente {
+  background-color: transparent;
   border-radius: 50%;
   width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border: 2px dashed var(--ColorNegro);
 }
 @media (width > 1920px) {
   .Navbar {
@@ -65,7 +68,8 @@
   .Navbar__Titulo {
     font-size: 18px;
   }
-  .Navbar__Logo {
-    width: 35px;
+  .Navbar__FotoAgente {
+    width: 40px;
+    height: 40px;
   }
 }

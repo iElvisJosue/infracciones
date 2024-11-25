@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+// IMPORTAMOS LIBRERÍAS A USAR
+import { useState } from "react";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerConceptosDocumentosEvidencias from "../../hooks/AdministrarInfracciones/useObtenerConceptosDocumentosEvidencias";
@@ -7,6 +9,7 @@ import useObtenerConceptosDocumentosEvidencias from "../../hooks/AdministrarInfr
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
+import ModalInformacionDelAgente from "./ModalInformacionDelAgente";
 
 // IMPORTAMOS LAS AYUDAS
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
@@ -20,6 +23,8 @@ export default function AdministrarInfraccionesDetalles({
   detallesInfraccion,
   establecerVistaAdministrarInfracciones,
 }) {
+  const [mostrarModalAgente, establecerMostrarModalAgente] = useState(false);
+  const [idAgente, establecerIdAgente] = useState(null);
   const {
     conceptosDocumentosEvidencias,
     cargandoConceptosDocumentosEvidencias,
@@ -45,11 +50,22 @@ export default function AdministrarInfraccionesDetalles({
   const { Conceptos, DocumentosRetenidos, Evidencias } =
     conceptosDocumentosEvidencias;
 
+  const EstablecerAgenteYMostrarModal = (idAgente) => {
+    establecerIdAgente(idAgente);
+    establecerMostrarModalAgente(true);
+  };
+
   return (
     <div
       className="AdministrarInfraccionesDetalles"
       id="AdministrarInfraccionesDetalles"
     >
+      {mostrarModalAgente && (
+        <ModalInformacionDelAgente
+          idAgente={idAgente}
+          establecerMostrarModalAgente={establecerMostrarModalAgente}
+        />
+      )}
       <GrupoDeBotonesSuperior
         BotonRegresar={true}
         FuncionRegresar={establecerVistaAdministrarInfracciones}
@@ -59,13 +75,22 @@ export default function AdministrarInfraccionesDetalles({
         <img src="imagenes/LogoCreacion.png" alt="Logo Creacion" />
         <h1>Detalles de la creación</h1>
       </section>
-      <div className="AdministrarInfraccionesDetalles__Detalles">
+      {/* <div className="AdministrarInfraccionesDetalles__Detalles">
         <ion-icon name="glasses"></ion-icon> <b>Agente</b>
         {detallesInfraccion.NombreAgente || "-"}{" "}
         {detallesInfraccion.ApellidosAgente || ""}
-      </div>
-      <div className="AdministrarInfraccionesDetalles__Detalles Azul">
-        <ion-icon name="key"></ion-icon> <b>Clave Interna</b>
+      </div> */}
+      {/* <div
+        className="AdministrarInfraccionesDetalles__Detalles Dos Azul ClaveAgente"
+        onClick={() => EstablecerAgenteYMostrarModal(detallesInfraccion)}
+      > */}
+      <div
+        className="AdministrarInfraccionesDetalles__Detalles Dos Azul ClaveAgente"
+        onClick={() =>
+          EstablecerAgenteYMostrarModal(detallesInfraccion.idAgente)
+        }
+      >
+        <ion-icon name="key"></ion-icon> <b>Clave interna del agente</b>
         {detallesInfraccion.ClaveInternaAgente || "-"}
       </div>
       <div className="AdministrarInfraccionesDetalles__Detalles">

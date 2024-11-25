@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -8,6 +9,7 @@ import { useConceptos } from "../../context/ConceptosContext";
 
 // COMPONENTES A USAR
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -22,6 +24,7 @@ export default function AdministrarConceptosFormulario({
   establecerObtenerConceptosNuevamente,
 }) {
   const { RegistrarConcepto } = useConceptos();
+  const [mostrarFormulario, establecerMostrarFormulario] = useState(true);
   const {
     handleSubmit,
     register,
@@ -64,14 +67,20 @@ export default function AdministrarConceptosFormulario({
       />
     );
   };
+
+  const claseFormulario = mostrarFormulario
+    ? "AdministrarConceptos__Formulario"
+    : "AdministrarConceptos__Formulario Ocultar";
+
   return (
-    <form
-      className="AdministrarConceptos__Formulario"
-      onSubmit={PeticionParaRegistrarConcepto}
-    >
-      <h1 className="AdministrarConceptos__Formulario--Titulo">
-        Registrar nuevo concepto <br /> 👩‍💻
-      </h1>
+    <form className={claseFormulario} onSubmit={PeticionParaRegistrarConcepto}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarFormulario}
+        establecerMostrarContenido={establecerMostrarFormulario}
+      >
+        Registrar Concepto
+      </TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="help-circle"></ion-icon> Nombre del concepto

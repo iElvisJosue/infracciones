@@ -1,11 +1,8 @@
 .CrearInfraccionInformacionDetallada {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-}
-.CrearInfraccionInformacionDetallada {
   grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 .CrearInfraccionInformacionDetallada__Seccion {
   grid-column: 1 / -1;

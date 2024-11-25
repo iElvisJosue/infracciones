@@ -6,13 +6,15 @@ import { useEffect } from "react";
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
 
 // IMPORTAMOS LOS COMPONENTES A USAR
-import Cargando from "../../components/Globales/Cargando";
-import SinResultados from "../../components/Globales/SinResultados";
+import Cargando from "../Globales/Cargando";
+import SinResultados from "../Globales/SinResultados";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useBuscarInfraccionesPorFiltro from "../../hooks/AdministrarInfracciones/useBuscarInfraccionesPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfraccionesListaCompleta.css";
@@ -20,12 +22,8 @@ import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfracciones
 export default function AdministrarInfraccionesListaCompleta({
   EstablecerLosDetallesDeLaInfraccion,
 }) {
-  const {
-    infracciones,
-    cargandoInfracciones,
-    filtroInfracciones,
-    establecerFiltroInfracciones,
-  } = useBuscarInfraccionesPorFiltro();
+  const { infracciones, cargandoInfracciones, establecerFiltroInfracciones } =
+    useBuscarInfraccionesPorFiltro();
   const {
     CantidadParaMostrar,
     paginaParaMostrar,
@@ -46,17 +44,6 @@ export default function AdministrarInfraccionesListaCompleta({
     }
   }, [infracciones]);
 
-  const BuscarInfraccion = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroInfracciones(valorIntroducido);
-      reiniciarValores();
-    }
-  };
-
   if (cargandoInfracciones) return <Cargando />;
 
   return (
@@ -65,23 +52,14 @@ export default function AdministrarInfraccionesListaCompleta({
         Lista completa de infracciones <br />
         🛑
       </h1>
-      <span className="AdministrarInfraccionesListaCompleta__Buscar">
-        <input
-          value={filtroInfracciones}
-          type="text"
-          placeholder="Buscar infracción"
-          onChange={BuscarInfraccion}
-        />
-        <span className="AdministrarInfraccionesListaCompleta__Buscar__Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroInfracciones}
+        placeholder="Buscar infracción"
+        reiniciarValores={reiniciarValores}
+      />
       {infracciones.length > 0 ? (
         <>
-          <small className="AdministrarInfraccionesListaCompleta__TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
-            {infracciones.length} resultados{" "}
-          </small>
+          <TextoResultados listaContenido={infracciones} />
           {infracciones.length > CantidadParaMostrar && (
             <ControlDePaginacion
               resultadosComponente={infracciones}

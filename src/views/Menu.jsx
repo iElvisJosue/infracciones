@@ -32,48 +32,43 @@ export default function Menu() {
     // LOS ESTILOS DEL MAIN ESTÁN GENERALES > GENERALES.CSS
     <main className="Main">
       <Navbar />
-      <div className="Main__Contenedor">
-        <h1 className="Main__Contenedor--Titulo">
+      <div className="Menu">
+        <h1 className="Menu--Titulo">
           Menú Principal, ¿Qué deseas hacer? <br />
           🤔
         </h1>
-        <div className="Menu">
-          {OPCIONES_DEL_MENU[TipoPerfilAgente].map(
-            (
-              {
-                ImagenDeLaOpcion,
-                AltImagenDeLaOpcion,
-                NombreDeLaOpcion,
-                VinculoOpcion,
-              },
-              index
-            ) => (
-              <section
-                className="Menu--Opcion"
-                key={index}
-                onClick={() => (window.location.href = VinculoOpcion)}
-              >
-                <img
-                  src={ImagenDeLaOpcion}
-                  alt={AltImagenDeLaOpcion}
-                  className="Menu--Opcion--Imagen"
-                />
-                <p className="Menu--Opcion--Titulo">{NombreDeLaOpcion}</p>
-              </section>
-            )
-          )}
-          <section
-            className="Menu--Opcion CerrarSesion"
-            onClick={CerrandoSesion}
-          >
-            <img
-              src="imagenes/CerrarSesion.png"
-              alt="Icono De Cierre De Sesión"
-              className="Menu--Opcion--Imagen CerrarSesion"
-            />
-            <p className="Menu--Opcion--Titulo CerrarSesion">Cerrar Sesión</p>
-          </section>
-        </div>
+        {OPCIONES_DEL_MENU[TipoPerfilAgente].map(
+          (
+            {
+              ImagenDeLaOpcion,
+              AltImagenDeLaOpcion,
+              NombreDeLaOpcion,
+              VinculoOpcion,
+            },
+            index
+          ) => (
+            <section
+              className="Menu--Opcion"
+              key={index}
+              onClick={() => (window.location.href = VinculoOpcion)}
+            >
+              <img
+                src={ImagenDeLaOpcion}
+                alt={AltImagenDeLaOpcion}
+                className="Menu--Opcion--Imagen"
+              />
+              <p className="Menu--Opcion--Titulo">{NombreDeLaOpcion}</p>
+            </section>
+          )
+        )}
+        <section className="Menu--Opcion CerrarSesion" onClick={CerrandoSesion}>
+          <img
+            src="imagenes/CerrarSesion.png"
+            alt="Icono De Cierre De Sesión"
+            className="Menu--Opcion--Imagen CerrarSesion"
+          />
+          <p className="Menu--Opcion--Titulo CerrarSesion">Cerrar Sesión</p>
+        </section>
       </div>
       <ToastContainer {...toastConfig} />
     </main>

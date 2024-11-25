@@ -10,6 +10,7 @@ import { useConceptos } from "../../context/ConceptosContext";
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -89,9 +90,7 @@ export default function AdministrarConceptosEditarConcepto({
         FuncionRegresar={establecerVistaAdministrarConceptos}
         VistaRegresar={0}
       />
-      <h1 className="AdministrarConceptos__Formulario--Titulo">
-        Actualizar concepto <br /> ✍
-      </h1>
+      <TituloSeccion>Actualizar Concepto</TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="help-circle"></ion-icon> Nombre del concepto

@@ -2,6 +2,12 @@
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 
+// IMPORTAMOS LAS AYUDAS
+import {
+  ObtenerFechaActual,
+  ObtenerHoraActual,
+} from "../../helpers/Generales/Funciones";
+
 // ESTILOS A USAR
 import "../../styles/Componentes/CrearInfraccion/CrearInfraccionInformacionDetallada.css";
 
@@ -34,6 +40,18 @@ export default function CrearInfraccionInformacionDetallada({
         FuncionRegresar={ReiniciarValoresParaNuevaInfraccion}
         VistaRegresar={0}
       />
+      <section className="CrearInfraccionInformacionDetallada__Seccion">
+        <img src="imagenes/LogoCreacion.png" alt="Logo Creacion" />
+        <h1>Detalles de la creación</h1>
+      </section>
+      <div className="CrearInfraccionInformacionDetallada__Detalles Dos">
+        <ion-icon name="calendar"></ion-icon> <b>Fecha</b>
+        {ObtenerFechaActual().split("-").reverse().join("/")}
+      </div>
+      <div className="CrearInfraccionInformacionDetallada__Detalles Dos">
+        <ion-icon name="time"></ion-icon> <b>Hora</b>
+        {ObtenerHoraActual()}
+      </div>
       <section className="CrearInfraccionInformacionDetallada__Seccion">
         <img src="imagenes/LogoInfraccion.png" alt="Logo Infracción" />
         <h1>Detalles de la infracción</h1>

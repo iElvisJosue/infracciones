@@ -5,11 +5,13 @@ import { useEffect } from "react";
 // IMPORTAMOS LOS COMPONENTES A USAR
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerPersonasActivasPorFiltro from "../../hooks/CrearInfraccion/useObtenerPersonasActivasPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/Componentes/CrearInfraccion/CrearInfraccionSeleccionarPersona.css";
@@ -39,18 +41,6 @@ export default function CrearInfraccionSeleccionarPersona({
       establecerCantidadDePaginas(CantidadDePaginasEnPersona);
     }
   }, [personas]);
-
-  const ObtenerPersonas = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroPersonas(valorIntroducido);
-      reiniciarValores();
-    }
-  };
-
   const EstablecerPersonaYVista = (persona) => {
     establecerInformacionDeLaPersona(persona);
     establecerVistaCrearInfraccion(1);
@@ -67,20 +57,11 @@ export default function CrearInfraccionSeleccionarPersona({
         <br />
         Selecciona la persona a infraccionar <br /> 👥
       </h1>
-      <span className="CrearInfraccionSeleccionarPersona__Buscar">
-        <input
-          type="text"
-          placeholder="Buscar persona por NOMBRE, CURP o RFC"
-          onChange={ObtenerPersonas}
-        />
-        <span className="CrearInfraccionSeleccionarPersona__Buscar__Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
-      <small className="CrearInfraccionSeleccionarPersona__TextoResultados">
-        <ion-icon name="search-circle"></ion-icon>Obtuvimos {personas.length}{" "}
-        resultados{" "}
-      </small>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroPersonas}
+        placeholder="Nombre, CURP ó RFC"
+        reiniciarValores={reiniciarValores}
+      />
       {personas.length > CantidadParaMostrar && (
         <ControlDePaginacion
           resultadosComponente={personas}
@@ -93,6 +74,7 @@ export default function CrearInfraccionSeleccionarPersona({
           indiceFinal={indiceFinal}
         />
       )}
+      {personas.length > 0 && <TextoResultados listaContenido={personas} />}
       {personas.length > 0 ? (
         personas.slice(indiceInicial, indiceFinal).map((persona) => (
           <section

@@ -1,14 +1,13 @@
 .MisInfraccionesPorFecha {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 10px;
   gap: 25px;
 }
 .MisInfraccionesPorFecha__Titulo {
   grid-column: 1 / -1;
   color: var(--ColorNaranja);
   text-align: center;
-  font-size: 25px;
+  font-size: 20px;
   text-transform: uppercase;
 
   display: flex;
@@ -30,7 +29,7 @@
   min-height: 50px;
   height: 50px;
   max-height: 50px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   background: var(--BgGradiente);
   border: none;
@@ -51,7 +50,7 @@
   justify-content: right;
 }
 .MisInfraccionesPorFecha__TextoResultados ion-icon {
-  font-size: 20px;
+  font-size: 18px;
 }
 .MisInfraccionesPorFecha__Cuerpo {
   grid-column: 1 / -1;
@@ -65,7 +64,7 @@
 .MisInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th {
   background: var(--BgGradiente);
   color: var(--ColorBlanco);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   padding: 10px;

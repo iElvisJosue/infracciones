@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -8,6 +9,7 @@ import { useAgentes } from "../../context/AgentesContext";
 
 // COMPONENTES A USAR
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -23,6 +25,7 @@ export default function AdministrarAgentesFormulario({
   establecerObtenerAgentesNuevamente,
 }) {
   const { RegistrarAgente } = useAgentes();
+  const [mostrarFormulario, establecerMostrarFormulario] = useState(true);
   const {
     handleSubmit,
     register,
@@ -73,14 +76,20 @@ export default function AdministrarAgentesFormulario({
       />
     );
   };
+
+  const claseFormulario = mostrarFormulario
+    ? "AdministrarAgentes__Formulario"
+    : "AdministrarAgentes__Formulario Ocultar";
+
   return (
-    <form
-      className="AdministrarAgentes__Formulario"
-      onSubmit={PeticionParaRegistrarAgente}
-    >
-      <h1 className="AdministrarAgentes__Formulario--Titulo">
-        Registrar nuevo agente <br /> 👩‍💻
-      </h1>
+    <form className={claseFormulario} onSubmit={PeticionParaRegistrarAgente}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarFormulario}
+        establecerMostrarContenido={establecerMostrarFormulario}
+      >
+        Registrar Agente
+      </TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="key"></ion-icon> Clave Interna

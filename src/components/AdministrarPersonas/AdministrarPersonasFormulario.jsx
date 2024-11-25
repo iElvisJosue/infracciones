@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -8,6 +9,7 @@ import { usePersonas } from "../../context/PersonasContext";
 
 // COMPONENTES A USAR
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -22,6 +24,7 @@ export default function AdministrarPersonasFormulario({
   establecerObtenerPersonasNuevamente,
 }) {
   const { RegistrarPersona } = usePersonas();
+  const [mostrarFormulario, establecerMostrarFormulario] = useState(true);
   const {
     handleSubmit,
     register,
@@ -64,14 +67,20 @@ export default function AdministrarPersonasFormulario({
       />
     );
   };
+
+  const claseFormulario = mostrarFormulario
+    ? "AdministrarPersonas__Formulario"
+    : "AdministrarPersonas__Formulario Ocultar";
+
   return (
-    <form
-      className="AdministrarPersonas__Formulario"
-      onSubmit={PeticionParaRegistrarPersona}
-    >
-      <h1 className="AdministrarPersonas__Formulario--Titulo">
-        Registrar nueva persona <br /> 👩‍💻
-      </h1>
+    <form className={claseFormulario} onSubmit={PeticionParaRegistrarPersona}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarFormulario}
+        establecerMostrarContenido={establecerMostrarFormulario}
+      >
+        Registrar Persona
+      </TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="person-circle"></ion-icon> Tipo persona

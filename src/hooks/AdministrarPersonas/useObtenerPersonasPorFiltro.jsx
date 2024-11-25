@@ -31,7 +31,8 @@ export default function useObtenerPersonasPorFiltro({
         }
         establecerCargandoPersonas(false);
       } catch (error) {
-        console.log(error);
+        const { status, data } = error.response;
+        MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
       }
     };
     obtenerPersonas();

@@ -90,11 +90,9 @@ export default function CrearInfraccion() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Crear Infracción" />
-      <div className="Main__Contenedor">
-        <section className="CrearInfraccion">
-          <ComponenteParaRenderizar {...PropsParaLosComponentes} />
-        </section>
-      </div>
+      <section className="CrearInfraccion">
+        <ComponenteParaRenderizar {...PropsParaLosComponentes} />
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

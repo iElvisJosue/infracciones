@@ -1,11 +1,8 @@
 .MisInfraccionesDetalles {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-}
-.MisInfraccionesDetalles {
   grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 .MisInfraccionesDetalles__Seccion {
   grid-column: 1 / -1;

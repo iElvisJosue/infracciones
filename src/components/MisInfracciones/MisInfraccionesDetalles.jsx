@@ -56,12 +56,7 @@ export default function MisInfraccionesDetalles({
         <img src="imagenes/LogoCreacion.png" alt="Logo Creacion" />
         <h1>Detalles de la creación</h1>
       </section>
-      <div className="MisInfraccionesDetalles__Detalles">
-        <ion-icon name="glasses"></ion-icon> <b>Agente</b>
-        {detallesInfraccion.NombreAgente || "-"}{" "}
-        {detallesInfraccion.ApellidosAgente || ""}
-      </div>
-      <div className="MisInfraccionesDetalles__Detalles Azul">
+      <div className="MisInfraccionesDetalles__Detalles Azul Dos">
         <ion-icon name="key"></ion-icon> <b>Clave Interna</b>
         {detallesInfraccion.ClaveInternaAgente || "-"}
       </div>

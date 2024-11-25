@@ -38,18 +38,16 @@ export default function AdministrarAgentes() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Administrar Agentes" />
-      <div className="Main__Contenedor">
-        <section className="AdministrarAgentes">
-          {vistaAdministrarAgentes === 0 ? (
-            <>
-              <AdministrarAgentesFormulario {...PropsParaLosComponentes} />
-              <AdministrarAgentesListaDeAgentes {...PropsParaLosComponentes} />
-            </>
-          ) : (
-            <AdministrarAgentesEditarAgente {...PropsParaLosComponentes} />
-          )}
-        </section>
-      </div>
+      <section className="AdministrarAgentes">
+        {vistaAdministrarAgentes === 0 ? (
+          <>
+            <AdministrarAgentesFormulario {...PropsParaLosComponentes} />
+            <AdministrarAgentesListaDeAgentes {...PropsParaLosComponentes} />
+          </>
+        ) : (
+          <AdministrarAgentesEditarAgente {...PropsParaLosComponentes} />
+        )}
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

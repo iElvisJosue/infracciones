@@ -10,6 +10,7 @@ import { useDocumentos } from "../../context/DocumentosContext";
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -87,9 +88,7 @@ export default function AdministrarDocumentosEditarDocumento({
         FuncionRegresar={establecerVistaAdministrarDocumentos}
         VistaRegresar={0}
       />
-      <h1 className="AdministrarDocumentos__Formulario--Titulo">
-        Actualizar documento <br /> ✍
-      </h1>
+      <TituloSeccion>Actualizar Documento</TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="document-text"></ion-icon> Nombre del documento

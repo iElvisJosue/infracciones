@@ -37,18 +37,16 @@ export default function AdministrarGruas() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Administrar Grúas" />
-      <div className="Main__Contenedor">
-        <section className="AdministrarGruas">
-          {vistaAdministrarGruas === 0 ? (
-            <>
-              <AdministrarGruasFormulario {...PropsParaLosComponentes} />
-              <AdministrarGruasListaDeGruas {...PropsParaLosComponentes} />
-            </>
-          ) : (
-            <AdministrarGruasEditarGrua {...PropsParaLosComponentes} />
-          )}
-        </section>
-      </div>
+      <section className="AdministrarGruas">
+        {vistaAdministrarGruas === 0 ? (
+          <>
+            <AdministrarGruasFormulario {...PropsParaLosComponentes} />
+            <AdministrarGruasListaDeGruas {...PropsParaLosComponentes} />
+          </>
+        ) : (
+          <AdministrarGruasEditarGrua {...PropsParaLosComponentes} />
+        )}
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

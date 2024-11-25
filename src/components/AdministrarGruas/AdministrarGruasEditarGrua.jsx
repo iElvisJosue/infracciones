@@ -10,6 +10,7 @@ import { useGruas } from "../../context/GruasContext";
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -87,9 +88,7 @@ export default function AdministrarGruasEditarGrua({
         FuncionRegresar={establecerVistaAdministrarGruas}
         VistaRegresar={0}
       />
-      <h1 className="AdministrarGruas__Formulario--Titulo">
-        Actualizar grúa <br /> ✍
-      </h1>
+      <TituloSeccion>Actualizar Grúa</TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="hammer"></ion-icon> Nombre de la grúa

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // CONTEXTOS A USAR
 import { useAgentes } from "../../context/AgentesContext";
@@ -10,14 +10,18 @@ import { useGlobal } from "../../context/GlobalContext";
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerAgentesPorFiltro from "../../hooks/AdministrarAgentes/useObtenerAgentesPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
+import { HOST_IMG } from "../../helpers/Generales/Urls";
 
 // ESTILOS A USAR
 import "../../styles/Componentes/AdministrarAgentes/AdministrarAgentesListaDeAgentes.css";
@@ -30,6 +34,7 @@ export default function AdministrarAgentesListaDeAgentes({
 }) {
   const { ActivarDesactivarAgente } = useAgentes();
   const { agente } = useGlobal();
+  const [mostrarLista, establecerMostrarLista] = useState(true);
   const { agentes, cargandoAgentes, establecerFiltroAgentes } =
     useObtenerAgentesPorFiltro({
       obtenerAgentesNuevamente,
@@ -78,42 +83,36 @@ export default function AdministrarAgentesListaDeAgentes({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  const BuscarAgentes = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroAgentes(valorIntroducido);
-      reiniciarValores();
-    }
-  };
   const CambiarVistaParaEditarAgente = (ingAgente) => {
     establecerInformacionDelAgente(ingAgente);
     establecerVistaAdministrarAgentes(1);
   };
+
+  const claseLista = mostrarLista
+    ? "AdministrarAgentes__Lista"
+    : "AdministrarAgentes__Lista Ocultar";
   const ALTA = "Alta";
   const ADMINISTRADOR = "Administrador";
 
   if (cargandoAgentes) return <Cargando />;
 
   return (
-    <div className="AdministrarAgentes__Lista">
-      <h1 className="AdministrarAgentes__Lista--Titulo">
-        Lista de agentes <br /> 📃
-      </h1>
-      <span className="AdministrarAgentes__Lista--Buscar">
-        <input
-          type="text"
-          placeholder="Buscar agente"
-          onChange={BuscarAgentes}
-        />
-        <span className="AdministrarAgentes__Lista--Buscar--Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
+    <div className={claseLista}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarLista}
+        establecerMostrarContenido={establecerMostrarLista}
+      >
+        Lista de agentes
+      </TituloSeccion>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroAgentes}
+        placeholder="Buscar agente"
+        reiniciarValores={reiniciarValores}
+      />
       {agentes.length > 0 ? (
         <>
+          <TextoResultados listaContenido={agentes} />
           <h3 className="AdministrarAgentes__Lista__Subtitulo">
             Estatus de los agentes:
           </h3>
@@ -128,10 +127,6 @@ export default function AdministrarAgentesListaDeAgentes({
               <ion-icon name="shield-checkmark"></ion-icon> Administrador
             </p>
           </span>
-          <small className="AdministrarAgentes__Lista--TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos {agentes.length}{" "}
-            resultados{" "}
-          </small>
           {agentes.length > CantidadParaMostrar && (
             <ControlDePaginacion
               resultadosComponente={agentes}
@@ -153,7 +148,10 @@ export default function AdministrarAgentesListaDeAgentes({
             >
               <span className="AdministrarAgentes__Lista__Agente__Detalles">
                 {infAgente.EstatusAgente === ALTA ? (
-                  <img src="imagenes/Agente.png" alt="Imagen de agente" />
+                  <img
+                    src={`${HOST_IMG}${infAgente.FotoAgente}`}
+                    alt="Imagen de agente"
+                  />
                 ) : (
                   <img
                     src="imagenes/Desactivado.png"

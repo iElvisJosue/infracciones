@@ -8,6 +8,7 @@ import {
   SolicitudBuscarConceptosDocumentosEvidencias,
   SolicitudBuscarInfraccionesPorAgenteYFiltro,
   SolicitudBuscarInfraccionesPorAgenteYFecha,
+  SolicitudBuscarInfraccionesDeUnAgente,
 } from "../api/authInfracciones";
 
 export const InfraccionesContext = createContext();
@@ -81,6 +82,14 @@ export const ProveedorInfracciones = ({ children }) => {
       return error;
     }
   };
+  const BuscarInfraccionesDeUnAgente = async (data) => {
+    try {
+      const res = await SolicitudBuscarInfraccionesDeUnAgente(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
 
   return (
     <InfraccionesContext.Provider
@@ -92,6 +101,7 @@ export const ProveedorInfracciones = ({ children }) => {
         BuscarConceptosDocumentosEvidencias,
         BuscarInfraccionesPorAgenteYFiltro,
         BuscarInfraccionesPorAgenteYFecha,
+        BuscarInfraccionesDeUnAgente,
       }}
     >
       {children}

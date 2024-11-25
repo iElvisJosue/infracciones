@@ -1,19 +1,13 @@
 .AdministrarConceptos__Lista {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
-.AdministrarConceptos__Lista {
-  grid-template-columns: repeat(4, 1fr);
-}
-.AdministrarConceptos__Lista--Titulo {
-  grid-column: 1 / -1;
-  font-size: 22px;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: var(--ColorNaranja);
-  text-align: center;
+.AdministrarConceptos__Lista.Ocultar {
+  min-height: 75px;
+  max-height: 75px;
+  overflow: hidden;
 }
 .AdministrarConceptos__Lista__Subtitulo {
   grid-column: 1 / -1;
@@ -22,32 +16,6 @@
 
   display: flex;
   gap: 5px;
-}
-.AdministrarConceptos__Lista--Buscar {
-  grid-column: 4/5;
-  display: flex;
-}
-.AdministrarConceptos__Lista--Buscar input {
-  width: 100%;
-  min-height: 50px;
-  height: 50px;
-  max-height: 50px;
-  background-color: var(--ColorGrisClaro);
-  border: 1px solid var(--ColorGrisClaro);
-  padding: 0 10px;
-  color: var(--ColorNegro);
-  font-size: 16px;
-  font-weight: bold;
-}
-.AdministrarConceptos__Lista--Buscar--Lupa {
-  min-width: 50px;
-  min-height: 50px;
-  background: var(--BgGradiente);
-  color: var(--ColorBlanco);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
 }
 .AdministrarConceptos__Lista__Clasificacion {
   grid-column: 1 / -1;
@@ -77,20 +45,6 @@
 .AdministrarConceptos__Lista__Clasificacion--Texto.Desactivada {
   color: var(--ColorBlanco);
   background-color: var(--ColorRojo);
-}
-.AdministrarConceptos__Lista--TextoResultados {
-  grid-column: 1 / -1;
-  color: var(--ColorVerde);
-  text-align: right;
-  font-style: italic;
-  font-weight: bold;
-
-  display: flex;
-  align-items: center;
-  justify-content: right;
-}
-.AdministrarConceptos__Lista--TextoResultados ion-icon {
-  font-size: 20px;
 }
 .AdministrarConceptos__Lista__Concepto {
   grid-column: span 1;
@@ -216,11 +170,6 @@
   font-size: 18px;
   transition: 0.3s ease-in-out all;
 }
-@media (max-width: 1000px) {
-  .AdministrarConceptos__Lista--Buscar {
-    grid-column: 1 / -1;
-  }
-}
 @media (max-width: 900px) {
   .GrupoDeBotonesSuperior--Boton {
     width: 100%;
@@ -247,12 +196,6 @@
   }
   .AdministrarConceptos__Lista__Concepto__Detalles img {
     width: 55px;
-  }
-  .AdministrarConceptos__Lista--TextoResultados {
-    font-size: 12px;
-  }
-  .AdministrarConceptos__Lista--TextoResultados ion-icon {
-    font-size: 16px;
   }
 }
 @media (width <= 435px) {

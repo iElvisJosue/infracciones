@@ -1,0 +1,22 @@
+.TextoResultados {
+  grid-column: 1 / -1;
+  color: var(--ColorVerde);
+  text-align: right;
+  font-style: italic;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.TextoResultados ion-icon {
+  font-size: 20px;
+}
+@media (max-width: 500px) {
+  .TextoResultados {
+    font-size: 12px;
+  }
+  .TextoResultados ion-icon {
+    font-size: 16px;
+  }
+}

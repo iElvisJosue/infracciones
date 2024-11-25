@@ -123,9 +123,9 @@ export default function CrearInfraccionEvidencias({
       }
       numImagen++;
     }
-    establecerIdDeLaInfraccion(idInfraccion);
     establecerVerModalSubiendo(false);
     establecerVerModalExitoso(true);
+    establecerIdDeLaInfraccion(idInfraccion);
   };
 
   return (

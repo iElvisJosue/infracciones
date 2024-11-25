@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // CONTEXTOS A USAR
 import { usePersonas } from "../../context/PersonasContext";
@@ -9,10 +9,13 @@ import { usePersonas } from "../../context/PersonasContext";
 import Cargando from "../Globales/Cargando";
 import SinResultados from "../Globales/SinResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
+import InputBusqueda from "../Globales/InputBusqueda";
+import TextoResultados from "../Globales/TextoResultados";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LOS HOOKS A USAR
 import useObtenerPersonasPorFiltro from "../../hooks/AdministrarPersonas/useObtenerPersonasPorFiltro";
-import usePaginacion from "../../hooks/Paginacion/usePagicacion";
+import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
@@ -28,6 +31,7 @@ export default function AdministrarPersonasListaDePersonas({
   establecerInformacionDeLaPersona,
 }) {
   const { ActivarDesactivarPersona } = usePersonas();
+  const [mostrarLista, establecerMostrarLista] = useState(true);
   const { personas, cargandoPersonas, establecerFiltroPersonas } =
     useObtenerPersonasPorFiltro({
       obtenerPersonasNuevamente,
@@ -75,41 +79,35 @@ export default function AdministrarPersonasListaDePersonas({
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
   };
-  const BuscarPersonas = (event) => {
-    const valorIntroducido = event.target.value;
-    // Utilizamos una expresión regular para permitir letras, números y "-"
-    const regex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚüÜ-]*$/;
-    // Comprobamos si el nuevo valor cumple con la expresión regular
-    if (regex.test(valorIntroducido)) {
-      establecerFiltroPersonas(valorIntroducido);
-      reiniciarValores();
-    }
-  };
   const CambiarVistaParaEditarPersona = (infPersona) => {
     establecerInformacionDeLaPersona(infPersona);
     establecerVistaAdministrarPersonas(1);
   };
+
+  const claseLista = mostrarLista
+    ? "AdministrarPersonas__Lista"
+    : "AdministrarPersonas__Lista Ocultar";
   const ACTIVA = "Activa";
 
   if (cargandoPersonas) return <Cargando />;
 
   return (
-    <div className="AdministrarPersonas__Lista">
-      <h1 className="AdministrarPersonas__Lista--Titulo">
-        Lista de personas <br /> 📃
-      </h1>
-      <span className="AdministrarPersonas__Lista--Buscar">
-        <input
-          type="text"
-          placeholder="Buscar persona"
-          onChange={BuscarPersonas}
-        />
-        <span className="AdministrarPersonas__Lista--Buscar--Lupa">
-          <ion-icon name="search"></ion-icon>
-        </span>
-      </span>
+    <div className={claseLista}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarLista}
+        establecerMostrarContenido={establecerMostrarLista}
+      >
+        Lista de personas
+      </TituloSeccion>
+      <InputBusqueda
+        establecerFiltro={establecerFiltroPersonas}
+        placeholder="Buscar persona"
+        reiniciarValores={reiniciarValores}
+      />
       {personas.length > 0 ? (
         <>
+          <TextoResultados listaContenido={personas} />
           <h3 className="AdministrarPersonas__Lista__Subtitulo">
             Estatus de las personas:
           </h3>
@@ -121,10 +119,6 @@ export default function AdministrarPersonasListaDePersonas({
               <ion-icon name="ban"></ion-icon> Desactivada
             </p>
           </span>
-          <small className="AdministrarPersonas__Lista--TextoResultados">
-            <ion-icon name="search-circle"></ion-icon>Obtuvimos{" "}
-            {personas.length} resultados{" "}
-          </small>
           {personas.length > CantidadParaMostrar && (
             <ControlDePaginacion
               resultadosComponente={personas}

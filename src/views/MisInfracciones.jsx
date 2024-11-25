@@ -54,32 +54,30 @@ export default function MisInfracciones() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Mis Infracciones" />
-      <div className="Main__Contenedor">
-        <section className="MisInfracciones">
-          {vistaMisInfracciones < 2 && (
-            <span className="MisInfracciones__Opciones">
-              {vistaMisInfracciones === 0 ? (
-                <button
-                  type="button"
-                  className="MisInfracciones__Opciones--Boton BuscarPorFecha"
-                  onClick={() => establecerVistaMisInfracciones(1)}
-                >
-                  <ion-icon name="calendar"></ion-icon> Buscar por fecha
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="MisInfracciones__Opciones--Boton ListaCompleta"
-                  onClick={() => establecerVistaMisInfracciones(0)}
-                >
-                  <ion-icon name="list"></ion-icon> Lista completa
-                </button>
-              )}
-            </span>
-          )}
-          <ComponenteParaRenderizar {...PropsParaLosComponentes} />
-        </section>
-      </div>
+      <section className="MisInfracciones">
+        {vistaMisInfracciones < 2 && (
+          <span className="MisInfracciones__Opciones">
+            {vistaMisInfracciones === 0 ? (
+              <button
+                type="button"
+                className="MisInfracciones__Opciones--Boton BuscarPorFecha"
+                onClick={() => establecerVistaMisInfracciones(1)}
+              >
+                <ion-icon name="calendar"></ion-icon> Buscar por fecha
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="MisInfracciones__Opciones--Boton ListaCompleta"
+                onClick={() => establecerVistaMisInfracciones(0)}
+              >
+                <ion-icon name="list"></ion-icon> Lista completa
+              </button>
+            )}
+          </span>
+        )}
+        <ComponenteParaRenderizar {...PropsParaLosComponentes} />
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

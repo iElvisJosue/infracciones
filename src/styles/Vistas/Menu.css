@@ -1,10 +1,22 @@
 .Menu {
   width: 100%;
+  margin-top: 75px;
+  padding: 10px;
+  overflow: auto;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
 }
-/* ++++++++++++++++++++++++++++++ */
+.Menu--Titulo {
+  grid-column: 1 / -1;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+  text-align: center;
+  margin: 20px 0;
+}
 .Menu--Opcion {
   grid-column: span 1;
   min-height: 150px;
@@ -12,8 +24,8 @@
   padding: 20px;
   transition: 0.5s ease all;
   text-align: center;
-  background-color: var(--ColorGrisContenido);
-  border: 2px solid var(--ColorGrisContenido);
+  background-color: var(--ColorGrisClaro);
+  border: 2px solid var(--ColorGrisClaro);
 
   display: flex;
   flex-direction: column;
@@ -41,21 +53,29 @@
   font-size: 16px;
   font-weight: bold;
 }
-@media (width < 700px) {
+@media (width < 950px) {
   .Menu--Opcion--Imagen {
     width: 80px;
+  }
+}
+@media (width < 800px) {
+  .Menu--Opcion--Imagen {
+    width: 70px;
   }
 }
 @media (width < 570px) {
   .Menu {
     grid-template-columns: repeat(2, 1fr);
   }
+  .Menu--Titulo {
+    font-size: 18px;
+  }
+  .Menu--Opcion--Titulo {
+    font-size: 14px;
+  }
 }
 @media (width < 400px) {
   .Menu--Opcion--Imagen {
     width: 60px;
-  }
-  .Menu--Opcion--Titulo {
-    font-size: 14px;
   }
 }

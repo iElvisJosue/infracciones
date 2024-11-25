@@ -40,20 +40,16 @@ export default function AdministrarPersonas() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Administrar Personas" />
-      <div className="Main__Contenedor">
-        <section className="AdministrarPersonas">
-          {vistaAdministrarPersonas === 0 ? (
-            <>
-              <AdministrarPersonasFormulario {...PropsParaLosComponentes} />
-              <AdministrarPersonasListaDePersonas
-                {...PropsParaLosComponentes}
-              />
-            </>
-          ) : (
-            <AdministrarPersonasEditarPersona {...PropsParaLosComponentes} />
-          )}
-        </section>
-      </div>
+      <section className="AdministrarPersonas">
+        {vistaAdministrarPersonas === 0 ? (
+          <>
+            <AdministrarPersonasFormulario {...PropsParaLosComponentes} />
+            <AdministrarPersonasListaDePersonas {...PropsParaLosComponentes} />
+          </>
+        ) : (
+          <AdministrarPersonasEditarPersona {...PropsParaLosComponentes} />
+        )}
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );

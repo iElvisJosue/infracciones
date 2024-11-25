@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 // LIBRERÍAS A USAR
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
@@ -8,6 +9,7 @@ import { useDocumentos } from "../../context/DocumentosContext";
 
 // COMPONENTES A USAR
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -22,6 +24,7 @@ export default function AdministrarDocumentosFormulario({
   establecerObtenerDocumentosNuevamente,
 }) {
   const { RegistrarDocumento } = useDocumentos();
+  const [mostrarFormulario, establecerMostrarFormulario] = useState(true);
   const {
     handleSubmit,
     register,
@@ -64,14 +67,20 @@ export default function AdministrarDocumentosFormulario({
       />
     );
   };
+
+  const claseFormulario = mostrarFormulario
+    ? "AdministrarDocumentos__Formulario"
+    : "AdministrarDocumentos__Formulario Ocultar";
+
   return (
-    <form
-      className="AdministrarDocumentos__Formulario"
-      onSubmit={PeticionParaRegistrarDocumento}
-    >
-      <h1 className="AdministrarDocumentos__Formulario--Titulo">
-        Registrar nuevo documento <br /> 👩‍💻
-      </h1>
+    <form className={claseFormulario} onSubmit={PeticionParaRegistrarDocumento}>
+      <TituloSeccion
+        mostrarBoton={true}
+        mostrarContenido={mostrarFormulario}
+        establecerMostrarContenido={establecerMostrarFormulario}
+      >
+        Registrar Documento
+      </TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="document-text"></ion-icon> Nombre del documento

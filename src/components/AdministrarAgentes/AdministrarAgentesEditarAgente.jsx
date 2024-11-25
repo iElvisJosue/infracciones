@@ -10,6 +10,7 @@ import { useAgentes } from "../../context/AgentesContext";
 // COMPONENTES A USAR
 import GrupoDeBotonesSuperior from "../Globales/GrupoDeBotonesSuperior";
 import GrupoDeBotonesInferior from "../Globales/GrupoDeBotonesInferior";
+import TituloSeccion from "../Globales/TituloSeccion";
 
 // IMPORTAMOS LAS AYUDAS
 import { MENSAJES_VALIDACIONES } from "../../helpers/Generales/MensajesValidaciones";
@@ -101,9 +102,7 @@ export default function AdministrarAgentesEditarAgente({
         FuncionRegresar={establecerVistaAdministrarAgentes}
         VistaRegresar={0}
       />
-      <h1 className="AdministrarAgentes__Formulario--Titulo">
-        Actualizar agente <br /> ✍
-      </h1>
+      <TituloSeccion>Actualizar Agente</TituloSeccion>
       <span className="GrupoDeInputs">
         <p>
           <ion-icon name="key"></ion-icon> Clave Interna

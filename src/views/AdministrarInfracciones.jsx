@@ -51,32 +51,30 @@ export default function AdministrarInfracciones() {
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
       <Navbar TituloNavbar="Administrar Infracciones" />
-      <div className="Main__Contenedor">
-        <section className="AdministrarInfracciones">
-          {vistaAdministrarInfracciones < 2 && (
-            <span className="AdministrarInfracciones__Opciones">
-              {vistaAdministrarInfracciones === 0 ? (
-                <button
-                  type="button"
-                  className="AdministrarInfracciones__Opciones--Boton BuscarPorFecha"
-                  onClick={() => establecerVistaAdministrarInfracciones(1)}
-                >
-                  <ion-icon name="calendar"></ion-icon> Buscar por fecha
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="AdministrarInfracciones__Opciones--Boton ListaCompleta"
-                  onClick={() => establecerVistaAdministrarInfracciones(0)}
-                >
-                  <ion-icon name="list"></ion-icon> Lista completa
-                </button>
-              )}
-            </span>
-          )}
-          <ComponenteParaRenderizar {...PropsParaLosComponentes} />
-        </section>
-      </div>
+      <section className="AdministrarInfracciones">
+        {vistaAdministrarInfracciones < 2 && (
+          <span className="AdministrarInfracciones__Opciones">
+            {vistaAdministrarInfracciones === 0 ? (
+              <button
+                type="button"
+                className="AdministrarInfracciones__Opciones--Boton BuscarPorFecha"
+                onClick={() => establecerVistaAdministrarInfracciones(1)}
+              >
+                <ion-icon name="calendar"></ion-icon> Buscar por fecha
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="AdministrarInfracciones__Opciones--Boton ListaCompleta"
+                onClick={() => establecerVistaAdministrarInfracciones(0)}
+              >
+                <ion-icon name="list"></ion-icon> Lista completa
+              </button>
+            )}
+          </span>
+        )}
+        <ComponenteParaRenderizar {...PropsParaLosComponentes} />
+      </section>
       <ToastContainer {...toastConfig} />
     </main>
   );
