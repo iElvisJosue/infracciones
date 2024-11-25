@@ -46,6 +46,7 @@
   width: 45px;
   height: 45px;
   object-fit: cover;
+  object-position: top;
   border: 2px dashed var(--ColorNegro);
 }
 @media (width > 1920px) {

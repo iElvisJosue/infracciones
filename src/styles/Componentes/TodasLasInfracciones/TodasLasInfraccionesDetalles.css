@@ -1,10 +1,10 @@
-.AdministrarInfraccionesDetalles {
+.TodasLasInfraccionesDetalles {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
-.AdministrarInfraccionesDetalles__Seccion {
+.TodasLasInfraccionesDetalles__Seccion {
   grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
@@ -12,16 +12,16 @@
   justify-content: center;
   gap: 10px;
 }
-.AdministrarInfraccionesDetalles__Seccion img {
+.TodasLasInfraccionesDetalles__Seccion img {
   width: 75px;
   height: 75px;
 }
-.AdministrarInfraccionesDetalles__Seccion h1 {
+.TodasLasInfraccionesDetalles__Seccion h1 {
   color: var(--ColorAzul);
   text-transform: uppercase;
   font-size: 22px;
 }
-.AdministrarInfraccionesDetalles__Detalles {
+.TodasLasInfraccionesDetalles__Detalles {
   grid-column: span 1;
   background-color: var(--ColorGrisClaro);
   padding: 10px;
@@ -34,61 +34,61 @@
   justify-content: center;
   gap: 5px;
 }
-.AdministrarInfraccionesDetalles__Detalles.Naranja {
+.TodasLasInfraccionesDetalles__Detalles.Naranja {
   background: var(--BgGradiente);
   color: var(--ColorBlanco);
   font-weight: bold;
 }
-.AdministrarInfraccionesDetalles__Detalles.Verde {
+.TodasLasInfraccionesDetalles__Detalles.Verde {
   background: var(--BgGradienteVerde);
   color: var(--ColorBlanco);
   font-weight: bold;
 }
-.AdministrarInfraccionesDetalles__Detalles.Azul {
+.TodasLasInfraccionesDetalles__Detalles.Azul {
   background: var(--BgGradienteAzul);
   color: var(--ColorBlanco);
   font-weight: bold;
 }
-.AdministrarInfraccionesDetalles__Detalles.Rojo {
+.TodasLasInfraccionesDetalles__Detalles.Rojo {
   background: var(--BgGradienteRojo);
   color: var(--ColorBlanco);
   font-weight: bold;
 }
 
-.AdministrarInfraccionesDetalles__Detalles.Dos {
+.TodasLasInfraccionesDetalles__Detalles.Dos {
   grid-column: span 2;
 }
-.AdministrarInfraccionesDetalles__Detalles.Tres {
+.TodasLasInfraccionesDetalles__Detalles.Tres {
   grid-column: span 3;
 }
-.AdministrarInfraccionesDetalles__Detalles.Completo {
+.TodasLasInfraccionesDetalles__Detalles.Completo {
   grid-column: 1 / -1;
 }
-.AdministrarInfraccionesDetalles__Detalles ion-icon {
+.TodasLasInfraccionesDetalles__Detalles ion-icon {
   font-size: 25px;
 }
-.AdministrarInfraccionesDetalles__Detalles.ClaveAgente:hover {
+.TodasLasInfraccionesDetalles__Detalles.ClaveAgente:hover {
   cursor: pointer;
   transform: scale(1.01);
 }
 @media (width <= 850px) {
-  .AdministrarInfraccionesDetalles__Seccion {
+  .TodasLasInfraccionesDetalles__Seccion {
     font-size: 16px;
   }
-  .AdministrarInfraccionesDetalles__Seccion img {
+  .TodasLasInfraccionesDetalles__Seccion img {
     width: 40px;
     height: 40px;
   }
-  .AdministrarInfraccionesDetalles__Detalles {
+  .TodasLasInfraccionesDetalles__Detalles {
     font-size: 14px;
   }
 }
 @media (width <= 700px) {
-  .AdministrarInfraccionesDetalles {
+  .TodasLasInfraccionesDetalles {
     grid-template-columns: repeat(2, 1fr);
   }
-  .AdministrarInfraccionesDetalles__Detalles.Nombre,
-  .AdministrarInfraccionesDetalles__Detalles.Tres {
+  .TodasLasInfraccionesDetalles__Detalles.Nombre,
+  .TodasLasInfraccionesDetalles__Detalles.Tres {
     grid-column: 1 / -1;
   }
 }

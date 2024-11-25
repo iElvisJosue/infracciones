@@ -12,7 +12,7 @@ import { ProveedorDocumentos } from "./context/DocumentosContext";
 import IniciarSesion from "./views/IniciarSesion";
 import Menu from "./views/Menu";
 import CrearInfraccion from "./views/CrearInfraccion";
-import AdministrarInfracciones from "./views/AdministrarInfracciones";
+import TodasLasInfracciones from "./views/TodasLasInfracciones";
 import AdministrarAgentes from "./views/AdministrarAgentes";
 import AdministrarGruas from "./views/AdministrarGruas";
 import AdministrarPersonas from "./views/AdministrarPersonas";
@@ -23,7 +23,7 @@ import MisInfracciones from "./views/MisInfracciones";
 // PROTECCIÓN DE RUTAS
 import ProteccionPorCookies from "./protection/ProteccionPorCookies";
 import ProteccionParaAdministradores from "./protection/ProteccionParaAdministradores";
-import ProteccionParaAgentes from "./protection/ProteccionParaAgentes";
+// import ProteccionParaAgentes from "./protection/ProteccionParaAgentes";
 
 export default function App() {
   return (
@@ -47,18 +47,17 @@ export default function App() {
                           element={<CrearInfraccion />}
                         />
                         {/* RUTAS PROTEGIDAS PARA AGENTES */}
-                        <Route element={<ProteccionParaAgentes />}>
-                          <Route
-                            path="/Mis-Infracciones"
-                            element={<MisInfracciones />}
-                          />
-                        </Route>
+                        {/* <Route element={<ProteccionParaAgentes />}></Route> */}
+                        <Route
+                          path="/Mis-Infracciones"
+                          element={<MisInfracciones />}
+                        />
                         {/* TERMINAN LAS RUTAS PROTEGIDAS PARA AGENTES */}
                         {/* RUTAS PROTEGIDAS PARA ADMINISTRADORES */}
                         <Route element={<ProteccionParaAdministradores />}>
                           <Route
-                            path="/Administrar-Infracciones"
-                            element={<AdministrarInfracciones />}
+                            path="/Todas-Las-Infracciones"
+                            element={<TodasLasInfracciones />}
                           />
                           <Route
                             path="/Administrar-Agentes"

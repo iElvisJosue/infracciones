@@ -50,8 +50,8 @@ export default function MisInfraccionesListaCompleta({
   return (
     <div className="MisInfraccionesListaCompleta">
       <h1 className="MisInfraccionesListaCompleta__Titulo">
-        Lista completa de infracciones <br />
-        🛑
+        Lista completa <br />
+        📄
       </h1>
       <InputBusqueda
         establecerFiltro={establecerFiltroInfracciones}

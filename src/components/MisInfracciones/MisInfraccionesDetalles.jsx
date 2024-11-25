@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 // IMPORTAMOS LOS HOOKS A USAR
-import useObtenerConceptosDocumentosEvidencias from "../../hooks/AdministrarInfracciones/useObtenerConceptosDocumentosEvidencias";
+import useObtenerConceptosDocumentosEvidencias from "../../hooks/TodasLasInfracciones/useObtenerConceptosDocumentosEvidencias";
 
 // COMPONENTES A USAR
 import Cargando from "../Globales/Cargando";

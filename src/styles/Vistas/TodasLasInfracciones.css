@@ -1,4 +1,4 @@
-.AdministrarInfracciones {
+.TodasLasInfracciones {
   width: 100%;
   margin-top: 75px;
   padding: 10px;
@@ -8,12 +8,12 @@
   flex-direction: column;
   gap: 20px;
 }
-.AdministrarInfracciones__Opciones {
+.TodasLasInfracciones__Opciones {
   grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
 }
-.AdministrarInfracciones__Opciones--Boton {
+.TodasLasInfracciones__Opciones--Boton {
   width: 250px;
   min-height: 50px;
   text-transform: uppercase;
@@ -30,16 +30,16 @@
   justify-content: center;
   gap: 3px;
 }
-.AdministrarInfracciones__Opciones--Boton:hover {
+.TodasLasInfracciones__Opciones--Boton:hover {
   cursor: pointer;
   transform: scale(1.03);
 }
-.AdministrarInfracciones__Opciones--Boton ion-icon {
+.TodasLasInfracciones__Opciones--Boton ion-icon {
   font-size: 18px;
 }
 
 @media (max-width: 500px) {
-  .AdministrarInfracciones__Opciones--Boton {
+  .TodasLasInfracciones__Opciones--Boton {
     width: 100%;
   }
 }

@@ -13,13 +13,13 @@ import TextoResultados from "../Globales/TextoResultados";
 import ControlDePaginacion from "../Globales/ControlDePaginacion";
 
 // IMPORTAMOS LOS HOOKS A USAR
-import useBuscarInfraccionesPorFiltro from "../../hooks/AdministrarInfracciones/useBuscarInfraccionesPorFiltro";
+import useBuscarInfraccionesPorFiltro from "../../hooks/TodasLasInfracciones/useBuscarInfraccionesPorFiltro";
 import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 
 // IMPORTAMOS LOS ESTILOS
-import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfraccionesListaCompleta.css";
+import "../../styles/Componentes/TodasLasInfracciones/TodasLasInfraccionesListaCompleta.css";
 
-export default function AdministrarInfraccionesListaCompleta({
+export default function TodasLasInfraccionesListaCompleta({
   EstablecerLosDetallesDeLaInfraccion,
 }) {
   const { infracciones, cargandoInfracciones, establecerFiltroInfracciones } =
@@ -47,10 +47,10 @@ export default function AdministrarInfraccionesListaCompleta({
   if (cargandoInfracciones) return <Cargando />;
 
   return (
-    <div className="AdministrarInfraccionesListaCompleta">
-      <h1 className="AdministrarInfraccionesListaCompleta__Titulo">
-        Lista completa de infracciones <br />
-        🛑
+    <div className="TodasLasInfraccionesListaCompleta">
+      <h1 className="TodasLasInfraccionesListaCompleta__Titulo">
+        Lista completa <br />
+        📄
       </h1>
       <InputBusqueda
         establecerFiltro={establecerFiltroInfracciones}
@@ -72,9 +72,9 @@ export default function AdministrarInfraccionesListaCompleta({
               indiceFinal={indiceFinal}
             />
           )}
-          <div className="AdministrarInfraccionesListaCompleta__Cuerpo">
-            <table className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla">
-              <thead className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Encabezado">
+          <div className="TodasLasInfraccionesListaCompleta__Cuerpo">
+            <table className="TodasLasInfraccionesListaCompleta__Cuerpo__Tabla">
+              <thead className="TodasLasInfraccionesListaCompleta__Cuerpo__Tabla__Encabezado">
                 <tr>
                   <th>
                     <ion-icon name="document-text"></ion-icon>
@@ -108,7 +108,7 @@ export default function AdministrarInfraccionesListaCompleta({
                   </th>
                 </tr>
               </thead>
-              <tbody className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo">
+              <tbody className="TodasLasInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo">
                 {infracciones
                   .slice(indiceInicial, indiceFinal)
                   .map((infInfraccion) => (
@@ -129,7 +129,7 @@ export default function AdministrarInfraccionesListaCompleta({
                       </td>
                       <td>
                         <button
-                          className="AdministrarInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo__VerDetalles"
+                          className="TodasLasInfraccionesListaCompleta__Cuerpo__Tabla__Cuerpo__VerDetalles"
                           onClick={() =>
                             EstablecerLosDetallesDeLaInfraccion(
                               infInfraccion,

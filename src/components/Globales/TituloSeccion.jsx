@@ -15,6 +15,9 @@ export default function TituloSeccion({
     : "TituloSeccion Ocultar";
 
   const IconoOcultarMostrar = mostrarContenido ? "eye-off" : "eye";
+  const TituloBoton = mostrarContenido
+    ? "Ocultar contenido"
+    : "Mostrar contenido";
 
   return (
     <h1 className={claseTituloSeccion}>
@@ -23,6 +26,7 @@ export default function TituloSeccion({
         <ion-icon
           name={IconoOcultarMostrar}
           onClick={() => establecerMostrarContenido(!mostrarContenido)}
+          title={TituloBoton}
         ></ion-icon>
       ) : (
         emoji

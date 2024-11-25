@@ -5,9 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 // IMPORTAMOS LOS COMPONENTES
 import Navbar from "../components/Globales/Navbar";
-import AdministrarInfraccionesListaCompleta from "../components/AdministrarInfracciones/AdministrarInfraccionesListaCompleta";
-import AdministrarInfraccionesPorFecha from "../components/AdministrarInfracciones/AdministrarInfraccionesPorFecha";
-import AdministrarInfraccionesDetalles from "../components/AdministrarInfracciones/AdministrarInfraccionesDetalles";
+import TodasLasInfraccionesListaCompleta from "../components/TodasLasInfracciones/TodasLasInfraccionesListaCompleta";
+import TodasLasInfraccionesListaPorFecha from "../components/TodasLasInfracciones/TodasLasInfraccionesListaPorFecha";
+import TodasLasInfraccionesDetalles from "../components/TodasLasInfracciones/TodasLasInfraccionesDetalles";
 
 // IMPORTAMOS LAS PROPS DEL TOAST
 import { toastConfig } from "../helpers/Generales/ToastProps";
@@ -15,58 +15,58 @@ import { toastConfig } from "../helpers/Generales/ToastProps";
 // IMPORTAMOS LOS ESTILOS GENERALES
 import "../styles/Generales/Generales.css";
 // IMPORTAMOS LOS ESTILOS
-import "../styles/Vistas/AdministrarInfracciones.css";
+import "../styles/Vistas/TodasLasInfracciones.css";
 
-export default function AdministrarInfracciones() {
+export default function TodasLasInfracciones() {
   // ESTADOS
-  const [vistaAdministrarInfracciones, establecerVistaAdministrarInfracciones] =
-    useState(0);
   const [esCompleta, establecerEsCompleta] = useState(true);
+  const [vistaTodasLasInfracciones, establecerVistaTodasLasInfracciones] =
+    useState(0);
   const [detallesInfraccion, establecerDetallesInfraccion] = useState(null);
 
   const EstablecerLosDetallesDeLaInfraccion = (Infraccion, esCompleta) => {
     establecerDetallesInfraccion(Infraccion);
     establecerEsCompleta(esCompleta);
-    establecerVistaAdministrarInfracciones(2);
+    establecerVistaTodasLasInfracciones(2);
   };
 
   // VALORES COMPARTIDOS
   const PropsParaLosComponentes = {
     esCompleta,
-    establecerVistaAdministrarInfracciones,
+    establecerVistaTodasLasInfracciones,
     detallesInfraccion,
     establecerDetallesInfraccion,
     EstablecerLosDetallesDeLaInfraccion,
   };
   // ESTA ES LA LISTA DE LOS COMPONENTES PARA ESTA VISTA
   const componentesParaMostrar = {
-    0: AdministrarInfraccionesListaCompleta,
-    1: AdministrarInfraccionesPorFecha,
-    2: AdministrarInfraccionesDetalles,
+    0: TodasLasInfraccionesListaCompleta,
+    1: TodasLasInfraccionesListaPorFecha,
+    2: TodasLasInfraccionesDetalles,
   };
   // ESTE ES EL COMPONENTE QUE MOSTRAREMOS
   const ComponenteParaRenderizar =
-    componentesParaMostrar[vistaAdministrarInfracciones];
+    componentesParaMostrar[vistaTodasLasInfracciones];
   return (
     // LOS ESTILOS DEL MAIN ESTÁN EN INDEX.CSS
     <main className="Main">
-      <Navbar TituloNavbar="Administrar Infracciones" />
-      <section className="AdministrarInfracciones">
-        {vistaAdministrarInfracciones < 2 && (
-          <span className="AdministrarInfracciones__Opciones">
-            {vistaAdministrarInfracciones === 0 ? (
+      <Navbar TituloNavbar="Todas las infracciones" />
+      <section className="TodasLasInfracciones">
+        {vistaTodasLasInfracciones < 2 && (
+          <span className="TodasLasInfracciones__Opciones">
+            {vistaTodasLasInfracciones === 0 ? (
               <button
                 type="button"
-                className="AdministrarInfracciones__Opciones--Boton BuscarPorFecha"
-                onClick={() => establecerVistaAdministrarInfracciones(1)}
+                className="TodasLasInfracciones__Opciones--Boton BuscarPorFecha"
+                onClick={() => establecerVistaTodasLasInfracciones(1)}
               >
-                <ion-icon name="calendar"></ion-icon> Buscar por fecha
+                <ion-icon name="calendar"></ion-icon> Lista por fechas
               </button>
             ) : (
               <button
                 type="button"
-                className="AdministrarInfracciones__Opciones--Boton ListaCompleta"
-                onClick={() => establecerVistaAdministrarInfracciones(0)}
+                className="TodasLasInfracciones__Opciones--Boton ListaCompleta"
+                onClick={() => establecerVistaTodasLasInfracciones(0)}
               >
                 <ion-icon name="list"></ion-icon> Lista completa
               </button>

@@ -3,14 +3,14 @@
 import Cargando from "../Globales/Cargando";
 
 // IMPORTAMOS LOS HOOKS A USAR
-import useBuscarInfraccionesDeUnAgente from "../../hooks/AdministrarInfracciones/useBuscarInfraccionesDeUnAgente";
+import useBuscarInfraccionesDeUnAgente from "../../hooks/TodasLasInfracciones/useBuscarInfraccionesDeUnAgente";
 
 // IMPORTAMOS LAS AYUDAS
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
 import { HOST_IMG } from "../../helpers/Generales/Urls";
 
 // IMPORTAMOS LOS ESTILOS
-import "../../styles/Componentes/AdministrarInfracciones/ModalInformacionDelAgente.css";
+import "../../styles/Componentes/TodasLasInfracciones/ModalInformacionDelAgente.css";
 
 export default function ModalInformacionDelAgente({
   idAgente,

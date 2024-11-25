@@ -38,7 +38,7 @@ export default function MisInfraccionesPorFecha({
   return (
     <div className="MisInfraccionesPorFecha">
       <h1 className="MisInfraccionesPorFecha__Titulo">
-        Buscar infracciones por fecha
+        Lista por fechas
         <small className="MisInfraccionesPorFecha__Titulo--Fechas">
           ({FormatearFecha(primeraFecha)} - {FormatearFecha(segundaFecha)})
         </small>

@@ -1,9 +1,9 @@
-.AdministrarInfraccionesPorFecha {
+.TodasLasInfraccionesListaPorFecha {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
 }
-.AdministrarInfraccionesPorFecha__Titulo {
+.TodasLasInfraccionesListaPorFecha__Titulo {
   grid-column: 1 / -1;
   color: var(--ColorNaranja);
   text-align: center;
@@ -13,17 +13,17 @@
   display: flex;
   flex-direction: column;
 }
-.AdministrarInfraccionesPorFecha__Titulo--Fechas {
+.TodasLasInfraccionesListaPorFecha__Titulo--Fechas {
   font-size: 12px;
   color: var(--ColorRojo);
 }
-.AdministrarInfraccionesPorFecha__Botones {
+.TodasLasInfraccionesListaPorFecha__Botones {
   grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
-.AdministrarInfraccionesPorFecha__Botones--Boton {
+.TodasLasInfraccionesListaPorFecha__Botones--Boton {
   width: auto;
   padding: 0 10px;
   min-height: 50px;
@@ -38,16 +38,16 @@
   transition: 0.3s ease-in-out all;
   cursor: pointer;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo {
+.TodasLasInfraccionesListaPorFecha__Cuerpo {
   grid-column: 1 / -1;
   overflow-x: auto;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla {
   width: 100%;
   table-layout: auto;
   border-collapse: collapse;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Encabezado tr th {
   background: var(--BgGradiente);
   color: var(--ColorBlanco);
   font-size: 14px;
@@ -56,14 +56,14 @@
   padding: 10px;
   min-width: 200px;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th ion-icon {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Encabezado tr th ion-icon {
   font-size: 18px;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo {
   background-color: var(--ColorBlanco);
   text-align: center;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo tr td {
   padding: 10px;
   font-size: 12px;
   font-weight: bold;
@@ -72,7 +72,7 @@
   border-bottom: 2px solid var(--ColorGrisClaro);
   border-left: 2px solid var(--ColorGrisClaro);
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles {
   cursor: pointer;
   background-color: var(--ColorAzul);
   border: 2px solid var(--ColorAzul);
@@ -83,24 +83,24 @@
   height: 35px;
   transition: 0.3s ease-in-out all;
 }
-.AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles:hover {
+.TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles:hover {
   background-color: transparent;
   color: var(--ColorAzul);
 }
 @media (max-width: 500px) {
-  .AdministrarInfraccionesPorFecha__Titulo {
+  .TodasLasInfraccionesListaPorFecha__Titulo {
     font-size: 20px;
   }
-  .AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th ion-icon {
+  .TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Encabezado tr th ion-icon {
     font-size: 16px;
   }
-  .AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Encabezado tr th {
+  .TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Encabezado tr th {
     font-size: 14px;
   }
-  .AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
+  .TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo tr td {
     font-size: 12px;
   }
-  .AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
+  .TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo tr td {
     padding: 5px;
   }
 }

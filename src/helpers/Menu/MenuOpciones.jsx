@@ -4,16 +4,22 @@ import { HOST } from "../Generales/Urls";
 export const OPCIONES_DEL_MENU = {
   Administrador: [
     {
+      ImagenDeLaOpcion: "imagenes/MisInfracciones.png",
+      AltImagenDeLaOpcion: "Icono menú mis infracciones",
+      NombreDeLaOpcion: "Mis Infracciones",
+      VinculoOpcion: `${HOST}Mis-Infracciones`,
+    },
+    {
       ImagenDeLaOpcion: "imagenes/CrearInfraccion.png",
       AltImagenDeLaOpcion: "Icono menú crear infracción",
       NombreDeLaOpcion: "Crear Infracción",
       VinculoOpcion: `${HOST}Crear-Infraccion`,
     },
     {
-      ImagenDeLaOpcion: "imagenes/AdministrarInfracciones.png",
-      AltImagenDeLaOpcion: "Icono menú administrar infracciones",
-      NombreDeLaOpcion: "Administrar Infracciones",
-      VinculoOpcion: `${HOST}Administrar-Infracciones`,
+      ImagenDeLaOpcion: "imagenes/TodasLasInfracciones.png",
+      AltImagenDeLaOpcion: "Icono menú lista de infracciones",
+      NombreDeLaOpcion: "Todas Las Infracciones",
+      VinculoOpcion: `${HOST}Todas-Las-Infracciones`,
     },
     {
       ImagenDeLaOpcion: "imagenes/Agente.png",

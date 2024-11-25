@@ -9,36 +9,33 @@
   gap: 20px;
 }
 .MisInfracciones__Opciones {
-  padding: 10px;
   grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
 }
 .MisInfracciones__Opciones--Boton {
-  width: auto;
-  padding: 0 10px;
+  width: 250px;
   min-height: 50px;
-  height: 50px;
-  max-height: 50px;
-  font-size: 16px;
+  text-transform: uppercase;
+  font-size: 14px;
   font-weight: bold;
-  background: var(--BgGradienteAzul);
-  border: transparent;
+  border: none;
   color: var(--ColorBlanco);
-  margin-top: 10px;
+  background: var(--BgGradienteAzul);
   transition: 0.3s ease-in-out all;
-  cursor: pointer;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 3px;
 }
 .MisInfracciones__Opciones--Boton:hover {
-  transform: scale(1.02);
+  cursor: pointer;
+  transform: scale(1.03);
 }
 .MisInfracciones__Opciones--Boton ion-icon {
-  font-size: 20px;
+  font-size: 18px;
 }
 @media (max-width: 500px) {
   .MisInfracciones__Opciones--Boton {

@@ -9,12 +9,12 @@ import TextoResultados from "../Globales/TextoResultados";
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
 
 // IMPORTAMOS LOS HOOKS A USAR
-import useBuscarInfraccionesPorFecha from "../../hooks/AdministrarInfracciones/useBuscarInfraccionesPorFecha";
+import useBuscarInfraccionesPorFecha from "../../hooks/TodasLasInfracciones/useBuscarInfraccionesPorFecha";
 
 // IMPORTAMOS LOS ESTILOS
-import "../../styles/Componentes/AdministrarInfracciones/AdministrarInfraccionesPorFecha.css";
+import "../../styles/Componentes/TodasLasInfracciones/TodasLasInfraccionesListaPorFecha.css";
 
-export default function AdministrarInfraccionesPorFecha({
+export default function TodasLasInfraccionesListaPorFecha({
   EstablecerLosDetallesDeLaInfraccion,
 }) {
   const {
@@ -36,21 +36,21 @@ export default function AdministrarInfraccionesPorFecha({
   if (cargandoInfraccionesPorFecha) return <Cargando />;
 
   return (
-    <div className="AdministrarInfraccionesPorFecha">
-      <h1 className="AdministrarInfraccionesPorFecha__Titulo">
-        Buscar infracciones por fecha
-        <small className="AdministrarInfraccionesPorFecha__Titulo--Fechas">
+    <div className="TodasLasInfraccionesListaPorFecha">
+      <h1 className="TodasLasInfraccionesListaPorFecha__Titulo">
+        Lista Por Fechas
+        <small className="TodasLasInfraccionesListaPorFecha__Titulo--Fechas">
           ({FormatearFecha(primeraFecha)} - {FormatearFecha(segundaFecha)})
         </small>
         📅
       </h1>
-      <div className="AdministrarInfraccionesPorFecha__Botones">
+      <div className="TodasLasInfraccionesListaPorFecha__Botones">
         <input
           type="date"
           name="primeraFecha"
           id="primeraFecha"
           value={primeraFecha}
-          className="AdministrarInfraccionesPorFecha__Botones--Boton"
+          className="TodasLasInfraccionesListaPorFecha__Botones--Boton"
           onChange={ManejarPrimeraFecha}
         />
         <input
@@ -58,16 +58,16 @@ export default function AdministrarInfraccionesPorFecha({
           name="segundaFecha"
           id="segundaFecha"
           value={segundaFecha}
-          className="AdministrarInfraccionesPorFecha__Botones--Boton"
+          className="TodasLasInfraccionesListaPorFecha__Botones--Boton"
           onChange={ManejarSegundaFecha}
         />
       </div>
       {infraccionesPorFecha.length > 0 ? (
         <>
           <TextoResultados listaContenido={infraccionesPorFecha} />
-          <div className="AdministrarInfraccionesPorFecha__Cuerpo">
-            <table className="AdministrarInfraccionesPorFecha__Cuerpo__Tabla">
-              <thead className="AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Encabezado">
+          <div className="TodasLasInfraccionesListaPorFecha__Cuerpo">
+            <table className="TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla">
+              <thead className="TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Encabezado">
                 <tr>
                   <th>
                     <ion-icon name="document-text"></ion-icon>
@@ -101,7 +101,7 @@ export default function AdministrarInfraccionesPorFecha({
                   </th>
                 </tr>
               </thead>
-              <tbody className="AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo">
+              <tbody className="TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo">
                 {infraccionesPorFecha.map((infInfraccion) => (
                   <tr key={infInfraccion.idInfraccion}>
                     <td>{infInfraccion.idInfraccion}</td>
@@ -120,7 +120,7 @@ export default function AdministrarInfraccionesPorFecha({
                     </td>
                     <td>
                       <button
-                        className="AdministrarInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles"
+                        className="TodasLasInfraccionesListaPorFecha__Cuerpo__Tabla__Cuerpo__VerDetalles"
                         onClick={() =>
                           EstablecerLosDetallesDeLaInfraccion(
                             infInfraccion,

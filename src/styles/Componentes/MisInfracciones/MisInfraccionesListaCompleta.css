@@ -61,9 +61,6 @@
   color: var(--ColorAzul);
 }
 @media (max-width: 500px) {
-  .MisInfracciones__Opciones--Boton {
-    width: 100%;
-  }
   .MisInfraccionesListaCompleta__Titulo {
     font-size: 20px;
   }

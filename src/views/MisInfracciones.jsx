@@ -63,7 +63,7 @@ export default function MisInfracciones() {
                 className="MisInfracciones__Opciones--Boton BuscarPorFecha"
                 onClick={() => establecerVistaMisInfracciones(1)}
               >
-                <ion-icon name="calendar"></ion-icon> Buscar por fecha
+                <ion-icon name="calendar"></ion-icon> Lista por fechas
               </button>
             ) : (
               <button
