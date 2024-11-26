@@ -1,0 +1,17 @@
+.PerfilActualizarInformacion {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.PerfilActualizarInformacion__MensajeEncriptado {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ColorRojo);
+  font-weight: bold;
+}
+@media (width <= 800px) {
+  .PerfilActualizarInformacion {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

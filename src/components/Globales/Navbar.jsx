@@ -3,7 +3,7 @@
 import { useGlobal } from "../../context/GlobalContext";
 
 // IMPORTAMOS LAS AYUDAS
-import { HOST_IMG } from "../../helpers/Generales/Urls";
+import { HOST_IMG_AGENTES } from "../../helpers/Generales/Urls";
 
 // ESTILOS A USAR
 import "../../styles/Componentes/Globales/Navbar.css";
@@ -21,11 +21,13 @@ export default function Navbar({
         {TextoRegresar}
       </a>
       <h1 className="Navbar__Titulo">{TituloNavbar}</h1>
-      <img
-        className="Navbar__FotoAgente"
-        src={`${HOST_IMG}${agente.FotoAgente}`}
-        alt="Foto Agente"
-      />
+      <a href="Perfil">
+        <img
+          className="Navbar__FotoAgente"
+          src={`${HOST_IMG_AGENTES}${agente.FotoAgente}`}
+          alt="Foto Agente"
+        />
+      </a>
     </nav>
   );
 }

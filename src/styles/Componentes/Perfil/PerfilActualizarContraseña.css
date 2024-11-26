@@ -1,0 +1,18 @@
+.PerfilActualizarContraseña {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.PerfilActualizarContraseña__MensajeEncriptado {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ColorRojo);
+  font-weight: bold;
+}
+
+@media (width <= 800px) {
+  .PerfilActualizarContraseña {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

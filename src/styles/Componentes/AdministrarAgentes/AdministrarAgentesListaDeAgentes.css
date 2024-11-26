@@ -110,20 +110,6 @@
   min-width: 40px;
   min-height: 25px;
   border-radius: 15px;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.AdministrarAgentes__Lista__Agente__Detalles--Activa {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  min-width: 40px;
-  min-height: 25px;
-  border-radius: 15px;
-  cursor: pointer;
 
   display: flex;
   align-items: center;

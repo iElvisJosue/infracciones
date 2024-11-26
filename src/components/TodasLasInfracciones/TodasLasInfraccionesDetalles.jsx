@@ -13,7 +13,7 @@ import ModalInformacionDelAgente from "./ModalInformacionDelAgente";
 
 // IMPORTAMOS LAS AYUDAS
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
-import { HOST_IMG } from "../../helpers/Generales/Urls";
+import { HOST_IMG_EVIDENCIAS } from "../../helpers/Generales/Urls";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/Componentes/TodasLasInfracciones/TodasLasInfraccionesDetalles.css";
@@ -272,7 +272,7 @@ export default function TodasLasInfraccionesDetalles({
           <div className="TodasLasInfraccionesDetalles__Detalles" key={index}>
             <ion-icon name="image"></ion-icon> <b>Imagen #{index + 1} </b>
             <img
-              src={`${HOST_IMG}${Evidencias[index].NombreEvidencia}`}
+              src={`${HOST_IMG_EVIDENCIAS}${Evidencias[index].NombreEvidencia}`}
               alt="Imagen Evidencia"
               style={{ width: "100px" }}
             />

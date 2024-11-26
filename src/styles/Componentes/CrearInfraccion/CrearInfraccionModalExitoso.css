@@ -64,7 +64,7 @@
 }
 .CrearInfraccionModalExitoso__Contenido--Completado--Boton:hover {
   cursor: pointer;
-  transform: scale(1.03);
+  transform: scale(1.01);
 }
 @media (width <= 550px) {
   .CrearInfraccionModalExitoso__Contenido {

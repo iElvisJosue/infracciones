@@ -11,6 +11,7 @@ import { ProveedorDocumentos } from "./context/DocumentosContext";
 // IMPORTAMOS LAS VISTAS
 import IniciarSesion from "./views/IniciarSesion";
 import Menu from "./views/Menu";
+import Perfil from "./views/Perfil";
 import CrearInfraccion from "./views/CrearInfraccion";
 import TodasLasInfracciones from "./views/TodasLasInfracciones";
 import AdministrarAgentes from "./views/AdministrarAgentes";
@@ -42,6 +43,7 @@ export default function App() {
                       {/* RUTAS PROTEGIDAS PARA USUARIOS LOGUEADOS */}
                       <Route element={<ProteccionPorCookies />}>
                         <Route path="/Menu" element={<Menu />} />
+                        <Route path="/Perfil" element={<Perfil />} />
                         <Route
                           path="/Crear-Infraccion"
                           element={<CrearInfraccion />}

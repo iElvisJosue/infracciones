@@ -1,0 +1,52 @@
+.PerfilActualizarImagen {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.PerfilActualizarImagen__SeleccionarImagen {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.PerfilActualizarImagen__SeleccionarImagen__Label {
+  width: 250px;
+  padding: 20px;
+  border: 2px dashed var(--ColorNaranja);
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.PerfilActualizarImagen__SeleccionarImagen__Label--Imagen {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.PerfilActualizarImagen__SeleccionarImagen__Label--Imagen img {
+  width: 100%;
+}
+.PerfilActualizarImagen__Texto {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--ColorNaranja);
+  font-style: italic;
+  font-weight: bold;
+}
+@media (width <= 800px) {
+  .PerfilActualizarImagen {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (width <= 500px) {
+  .PerfilActualizarImagen__SeleccionarImagen__Label {
+    width: 100%;
+  }
+}

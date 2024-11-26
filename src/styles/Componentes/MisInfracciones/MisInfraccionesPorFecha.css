@@ -79,7 +79,7 @@
 }
 .MisInfraccionesPorFecha__Cuerpo__Tabla__Cuerpo tr td {
   padding: 10px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
   border-right: 2px solid var(--ColorGrisClaro);

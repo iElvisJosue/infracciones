@@ -15,7 +15,7 @@ export default function CrearInfraccionModalSubiendo() {
             <br />
             ❌
             <br />
-            <b>Por favor no cierres esta ventana ni salgas del sistema.</b>
+            <b>Por favor no cierres esta ventana.</b>
           </small>
         </section>
       </article>

@@ -3,6 +3,7 @@ import {
   SolicitudIniciarSesion,
   SolicitudVerificarToken,
   SolicitudCerrarSesion,
+  SolicitudObtenerInformacionAgente,
 } from "../api/authGlobal";
 import Cookies from "js-cookie";
 
@@ -64,6 +65,27 @@ export const ProveedorGlobal = ({ children }) => {
     ValidarCookie();
   }, []);
 
+  const ObtenerInformacionAgente = async (data) => {
+    try {
+      const res = await SolicitudObtenerInformacionAgente(data);
+      if (!res.data) {
+        return setError();
+      } else {
+        Cookies.set(
+          "TOKEN_ACCESO_INFRACCIONES",
+          res.data.TOKEN_ACCESO_INFRACCIONES,
+          {
+            expires: 1,
+          }
+        );
+        establecerAgente(res.data);
+      }
+    } catch (error) {
+      setError();
+      return error;
+    }
+  };
+
   const IniciarSesion = async (data) => {
     try {
       const res = await SolicitudIniciarSesion(data);
@@ -97,6 +119,7 @@ export const ProveedorGlobal = ({ children }) => {
         tieneCookie,
         IniciarSesion,
         CerrarSesion,
+        ObtenerInformacionAgente,
       }}
     >
       {children}

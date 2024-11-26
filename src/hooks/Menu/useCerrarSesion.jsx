@@ -10,8 +10,7 @@ export default function useCerrarSesion() {
 
   const NOMBRE_COOKIE = "TOKEN_ACCESO_INFRACCIONES";
 
-  const CerrandoSesion = (e) => {
-    e.preventDefault();
+  const CerrandoSesion = () => {
     const promesaCerrandoSesion = new Promise(() => {
       setTimeout(() => {
         CerrarSesion();

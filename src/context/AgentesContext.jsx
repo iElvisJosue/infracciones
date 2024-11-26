@@ -5,6 +5,9 @@ import {
   SolicitudObtenerAgentesPorFiltro,
   SolicitudActivarDesactivarAgente,
   SolicitudActualizarAgente,
+  SolicitudActualizarFotoAgente,
+  SolicitudActualizarInformacion,
+  SolicitudActualizarContraseña,
 } from "../api/authAgentes";
 
 export const AgentesContext = createContext();
@@ -51,6 +54,32 @@ export const ProveedorAgentes = ({ children }) => {
     }
   };
 
+  const ActualizarFotoAgente = async (data) => {
+    try {
+      const res = await SolicitudActualizarFotoAgente(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const ActualizarInformacion = async (data) => {
+    try {
+      const res = await SolicitudActualizarInformacion(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
+  const ActualizarContraseña = async (data) => {
+    try {
+      const res = await SolicitudActualizarContraseña(data);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  };
+
   return (
     <AgentesContext.Provider
       value={{
@@ -58,6 +87,9 @@ export const ProveedorAgentes = ({ children }) => {
         ObtenerAgentesPorFiltro,
         ActivarDesactivarAgente,
         ActualizarAgente,
+        ActualizarFotoAgente,
+        ActualizarInformacion,
+        ActualizarContraseña,
       }}
     >
       {children}

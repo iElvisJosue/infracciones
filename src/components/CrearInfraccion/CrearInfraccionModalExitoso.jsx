@@ -17,11 +17,9 @@ export default function CrearInfraccionModalExitoso({
           <p className="CrearInfraccionModalExitoso__Contenido--Completado--Texto">
             🎉
             <br />
-            ¡Buenas noticias! La infracción ha sido registrada con éxito.
+            ¡Buenas noticias!
             <br />
-            📄
-            <br />
-            Para ver los detalles, da click en el botón de abajo.
+            La infracción ha sido registrada con éxito.
           </p>
           <button
             className="CrearInfraccionModalExitoso__Contenido--Completado--Boton"

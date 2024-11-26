@@ -7,7 +7,7 @@ import useBuscarInfraccionesDeUnAgente from "../../hooks/TodasLasInfracciones/us
 
 // IMPORTAMOS LAS AYUDAS
 import { FormatearFecha } from "../../helpers/Generales/Funciones";
-import { HOST_IMG } from "../../helpers/Generales/Urls";
+import { HOST_IMG_AGENTES } from "../../helpers/Generales/Urls";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/Componentes/TodasLasInfracciones/ModalInformacionDelAgente.css";
@@ -36,8 +36,8 @@ export default function ModalInformacionDelAgente({
               Inf. Agente
             </h1>
             <img
-              src={`${HOST_IMG}${
-                infraccionesDelAgente[0].FotoAgente || "Default.png"
+              src={`${HOST_IMG_AGENTES}${
+                infraccionesDelAgente[0]?.FotoAgente || "Default.png"
               } `}
               alt="Imagen Del Agente"
               className="ModalInformacionDelAgente__Contenido--Imagen"
@@ -47,7 +47,9 @@ export default function ModalInformacionDelAgente({
               <br />
               <b>Clave interna</b>
               <br />
-              <small>{infraccionesDelAgente[0].ClaveInternaAgente}</small>
+              <small>
+                {infraccionesDelAgente[0]?.ClaveInternaAgente || "N/A"}
+              </small>
             </span>
             <span className="ModalInformacionDelAgente__Contenido--Texto">
               🕵️‍♂️
@@ -55,8 +57,8 @@ export default function ModalInformacionDelAgente({
               <b>Nombre Completo</b>
               <br />
               <small>
-                {infraccionesDelAgente[0].NombreAgente}{" "}
-                {infraccionesDelAgente[0].ApellidosAgente}
+                {infraccionesDelAgente[0]?.NombreAgente || "N/A"}{" "}
+                {infraccionesDelAgente[0]?.ApellidosAgente || ""}
               </small>
             </span>
             <span className="ModalInformacionDelAgente__Contenido--Texto">
@@ -71,15 +73,24 @@ export default function ModalInformacionDelAgente({
               <br />
               <b>Última infracción</b>
               <br />
-              <small>Infracción #{infraccionesDelAgente[0].idInfraccion}</small>
-              <br />
               <small>
-                {FormatearFecha(
-                  infraccionesDelAgente[0].FechaCreacionInfraccion.slice(0, 10)
-                )}
+                Infracción #{infraccionesDelAgente[0]?.idInfraccion || "0"}
               </small>
               <br />
-              <small>{infraccionesDelAgente[0].HoraCreacionInfraccion}</small>
+              <small>
+                {infraccionesDelAgente[0]?.FechaCreacionInfraccion
+                  ? FormatearFecha(
+                      infraccionesDelAgente[0]?.FechaCreacionInfraccion.slice(
+                        0,
+                        10
+                      )
+                    )
+                  : "00-00-0000"}
+              </small>
+              <br />
+              <small>
+                {infraccionesDelAgente[0]?.HoraCreacionInfraccion || "00:00:00"}
+              </small>
             </span>
           </>
         )}

@@ -88,11 +88,6 @@ export default function MisInfraccionesPorFecha({
                     Grúa
                   </th>
                   <th>
-                    <ion-icon name="person-circle"></ion-icon>
-                    <br />
-                    Agente
-                  </th>
-                  <th>
                     <ion-icon name="calendar"></ion-icon>
                     <br />
                     Fecha y Hora
@@ -114,7 +109,6 @@ export default function MisInfraccionesPorFecha({
                       {infInfraccion.ApellidoMaternoPersona}
                     </td>
                     <td>{infInfraccion.NombreGrua}</td>
-                    <td>{infInfraccion.ClaveInternaAgente}</td>
                     <td>
                       {FormatearFecha(
                         infInfraccion.FechaCreacionInfraccion.slice(0, 10)

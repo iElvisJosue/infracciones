@@ -1,0 +1,100 @@
+.PerfilInformacion {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.PerfilInformacion__Seccion {
+  position: relative;
+  padding: 10px;
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.PerfilInformacion__Seccion img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 2px dashed var(--ColorNaranja);
+  object-fit: cover;
+}
+.PerfilInformacion__Seccion--ActualizarFoto {
+  position: absolute;
+  bottom: -3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--ColorAzul);
+  border: 2px solid var(--ColorBlanco);
+  color: var(--ColorBlanco);
+  font-size: 14px;
+  transition: 0.3s ease-in-out all;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.PerfilInformacion__Seccion--ActualizarFoto:hover {
+  cursor: pointer;
+  background-color: var(--ColorBlanco);
+  color: var(--ColorAzul);
+  border-color: var(--ColorAzul);
+}
+.PerfilInformacion__Seccion--Titulo {
+  width: 100%;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--ColorNaranja);
+}
+.PerfilInformacion__Divisor {
+  grid-column: 2 /2;
+  border: 1px dashed var(--ColorNaranja);
+}
+.PerfilInformacion__Seccion--Texto {
+  text-align: center;
+  font-size: 16px;
+  color: var(--ColorNegro);
+}
+.PerfilInformacion__Seccion--Texto b {
+  color: var(--ColorNaranja);
+}
+.PerfilInformacion__BotonActualizar {
+  min-height: 30px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+  border: none;
+  color: var(--ColorBlanco);
+  background: var(--BgGradienteAzul);
+  transition: 0.3s ease-in-out all;
+  padding: 5px 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.PerfilInformacion__BotonActualizar ion-icon {
+  font-size: 14px;
+}
+.PerfilInformacion__BotonActualizar:hover {
+  cursor: pointer;
+  transform: scale(1.03);
+}
+@media (width <= 800px) {
+  .PerfilInformacion {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .PerfilInformacion__Divisor {
+    grid-column: 1 / -1;
+  }
+}

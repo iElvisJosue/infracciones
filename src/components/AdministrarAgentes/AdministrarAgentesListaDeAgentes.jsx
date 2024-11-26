@@ -21,7 +21,7 @@ import usePaginacion from "../../hooks/Paginacion/usePaginacion";
 // IMPORTAMOS LAS AYUDAS
 import { MANEJAR_RESPUESTAS_DEL_SERVIDOR } from "../../helpers/Generales/ManejarRespuestasDelServidor";
 import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
-import { HOST_IMG } from "../../helpers/Generales/Urls";
+import { HOST_IMG_AGENTES } from "../../helpers/Generales/Urls";
 
 // ESTILOS A USAR
 import "../../styles/Componentes/AdministrarAgentes/AdministrarAgentesListaDeAgentes.css";
@@ -149,7 +149,7 @@ export default function AdministrarAgentesListaDeAgentes({
               <span className="AdministrarAgentes__Lista__Agente__Detalles">
                 {infAgente.EstatusAgente === ALTA ? (
                   <img
-                    src={`${HOST_IMG}${infAgente.FotoAgente}`}
+                    src={`${HOST_IMG_AGENTES}${infAgente.FotoAgente}`}
                     alt="Imagen de agente"
                   />
                 ) : (
@@ -184,7 +184,7 @@ export default function AdministrarAgentesListaDeAgentes({
                           )
                         }
                       >
-                        <ion-icon name="shield-checkmark"></ion-icon>
+                        <ion-icon name="checkmark-done-circle"></ion-icon>
                       </button>
                     ) : (
                       <button

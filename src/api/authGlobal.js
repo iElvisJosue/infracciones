@@ -9,3 +9,6 @@ export const SolicitudCerrarSesion = (data) =>
 // SOLICITUD PARA VERIFICAR TOKEN DEL NAVEGADOR
 export const SolicitudVerificarToken = (data) =>
   axios.post("/global/VerificarToken", data);
+// SOLICITUD PARA OBTENER INFORMACION DEL AGENTE
+export const SolicitudObtenerInformacionAgente = (data) =>
+  axios.post("/global/ObtenerInformacionAgente", data);

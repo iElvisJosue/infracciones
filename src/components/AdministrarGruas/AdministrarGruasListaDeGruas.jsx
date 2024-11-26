@@ -164,7 +164,7 @@ export default function AdministrarGruasListaDeGruas({
                         PeticionActivarDesactivarGrua(infGrua.idGrua, "No")
                       }
                     >
-                      <ion-icon name="checkmark-done"></ion-icon>
+                      <ion-icon name="hammer"></ion-icon>
                     </button>
                   ) : (
                     <button

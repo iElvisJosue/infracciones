@@ -15,7 +15,7 @@ export default function useObtenerConceptosDocumentosEvidencias({
   const [
     conceptosDocumentosEvidencias,
     establecerConceptosDocumentosEvidencias,
-  ] = useState(null);
+  ] = useState([]);
   const [
     cargandoConceptosDocumentosEvidencias,
     establecerCargandoConceptosDocumentosEvidencias,
@@ -31,6 +31,11 @@ export default function useObtenerConceptosDocumentosEvidencias({
         if (res.response) {
           const { status, data } = res.response;
           MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
+          establecerConceptosDocumentosEvidencias({
+            Conceptos: [],
+            DocumentosRetenidos: [],
+            Evidencias: [],
+          });
         } else {
           establecerConceptosDocumentosEvidencias(res.data);
         }

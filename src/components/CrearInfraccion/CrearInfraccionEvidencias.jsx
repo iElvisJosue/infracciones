@@ -20,6 +20,7 @@ import { COOKIE_CON_TOKEN } from "../../helpers/Generales/ObtenerCookie";
 
 // IMPORTAMOS LOS ESTILOS
 import "../../styles/Componentes/CrearInfraccion/CrearInfraccionEvidencias.css";
+import { toast } from "react-toastify";
 
 export default function CrearInfraccionEvidencias({
   informacionDeLaPersona,
@@ -33,8 +34,7 @@ export default function CrearInfraccionEvidencias({
   establecerInformacionDeLasEvidencias,
 }) {
   const { agente } = useGlobal();
-  const { RegistrarInfraccion, GuardarImagenDeEvidencia } = useInfracciones();
-  const [cantidadDeImagenes, establecerCantidadDeImagenes] = useState(0);
+  const { RegistrarInfraccion } = useInfracciones();
   const [verModalSubiendo, establecerVerModalSubiendo] = useState(false);
   const [verModalExitoso, establecerVerModalExitoso] = useState(false);
   const { handleSubmit } = useForm({
@@ -42,8 +42,14 @@ export default function CrearInfraccionEvidencias({
   });
 
   const onDrop = useCallback((acceptedFiles) => {
-    establecerInformacionDeLasEvidencias(acceptedFiles);
-    establecerCantidadDeImagenes(acceptedFiles.length);
+    if (acceptedFiles.length > 5) {
+      toast.warning(
+        "El máximo de evidencias es de 5, por favor inténtalo de nuevo.",
+        { theme: "colored" }
+      );
+    } else {
+      establecerInformacionDeLasEvidencias(acceptedFiles);
+    }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -51,12 +57,12 @@ export default function CrearInfraccionEvidencias({
   const ValidarLasImagenes = handleSubmit(async () => {
     let indexDeLaImagen = 0;
     let imagenesValidas = true;
-    while (indexDeLaImagen < cantidadDeImagenes) {
+    while (indexDeLaImagen < informacionDeLasEvidencias.length) {
       const imagenActual = informacionDeLasEvidencias[indexDeLaImagen];
       if (!imagenActual.type.startsWith("image")) {
         MANEJAR_RESPUESTAS_DEL_SERVIDOR({
           status: 404,
-          data: "Uno de los archivos seleccionados no es una imagen.",
+          data: "¡Oops! Parece que uno de los archivos que seleccionaste no es una imagen. Por favor inténtalo de nuevo.",
         });
         imagenesValidas = false;
         return;
@@ -64,7 +70,7 @@ export default function CrearInfraccionEvidencias({
       if (imagenActual.size > 10000000) {
         MANEJAR_RESPUESTAS_DEL_SERVIDOR({
           status: 404,
-          data: "Una de las imágenes sobrepasa el tamaño máximo permitido (10MB).",
+          data: "¡Oops! Parece que una de las imágenes que seleccionaste sobrepasa el tamaño máximo permitido (10MB). Por favor inténtalo de nuevo.",
         });
         imagenesValidas = false;
         return;
@@ -72,60 +78,44 @@ export default function CrearInfraccionEvidencias({
       indexDeLaImagen++;
     }
     if (imagenesValidas) {
+      establecerVerModalSubiendo(true);
       GuardarInformacionDeLaInfraccion();
     }
   });
 
   const GuardarInformacionDeLaInfraccion = async () => {
     try {
-      establecerVerModalSubiendo(true);
-      const res = await RegistrarInfraccion({
-        CookieConToken: COOKIE_CON_TOKEN,
-        Infraccion: informacionDeLaInfraccion,
-        idAgente: agente.idAgente,
-        idPersona: informacionDeLaPersona.idPersona,
-        idGrua: informacionDeLaGrua.idGrua,
-        Concepto: informacionDelConcepto,
-        DocumentosRetenidos: informacionDocumentosRetenidos,
-      });
+      // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGENES
+      const formData = new FormData();
+      formData.append("CookieConToken", COOKIE_CON_TOKEN);
+      formData.append("Infraccion", JSON.stringify(informacionDeLaInfraccion));
+      formData.append("idAgente", agente.idAgente);
+      formData.append("idPersona", informacionDeLaPersona.idPersona);
+      formData.append("idGrua", informacionDeLaGrua.idGrua);
+      formData.append("Concepto", JSON.stringify(informacionDelConcepto));
+      formData.append(
+        "DocumentosRetenidos",
+        JSON.stringify(informacionDocumentosRetenidos)
+      );
+      // AGREGAMOS TODAS LAS IMÁGENES
+      for (let index = 0; index < informacionDeLasEvidencias.length; index++) {
+        formData.append("Imagen", informacionDeLasEvidencias[index]);
+      }
+      const res = await RegistrarInfraccion(formData);
       if (res.response) {
         const { status, data } = res.response;
         MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
+        establecerVerModalSubiendo(false);
       } else {
-        GuardarLasImagenes(res.data.idInfraccion);
+        const { idInfraccion } = res.data;
+        establecerVerModalSubiendo(false);
+        establecerVerModalExitoso(true);
+        establecerIdDeLaInfraccion(idInfraccion);
       }
     } catch (error) {
       const { status, data } = error.response;
       MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
     }
-  };
-
-  const GuardarLasImagenes = async (idInfraccion) => {
-    let numImagen = 0;
-    while (numImagen < cantidadDeImagenes) {
-      const ImagenPorGuardar = informacionDeLasEvidencias[numImagen];
-      ImagenPorGuardar.idInfraccion = idInfraccion;
-
-      // CREAMOS EL FORM DATA QUE ENVIARA LA IMAGEN
-      const formData = new FormData();
-      formData.append("TituloImagen", "ImagenEvidencia");
-      formData.append("idInfraccion", idInfraccion);
-      formData.append("Imagen", ImagenPorGuardar);
-      try {
-        const res = await GuardarImagenDeEvidencia(formData);
-        if (res.response) {
-          const { status, data } = res.response;
-          MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
-        }
-      } catch (error) {
-        const { status, data } = error.response;
-        MANEJAR_RESPUESTAS_DEL_SERVIDOR({ status, data });
-      }
-      numImagen++;
-    }
-    establecerVerModalSubiendo(false);
-    establecerVerModalExitoso(true);
-    establecerIdDeLaInfraccion(idInfraccion);
   };
 
   return (
@@ -167,8 +157,8 @@ export default function CrearInfraccionEvidencias({
         </div>
       </span>
       <p className="CrearInfraccionEvidencias__Texto">
-        Por favor, selecciona o arrastra las imágenes que utilizaras para tus
-        evidencias. <br /> El tamaño máximo de las imágenes es de 10MB.
+        Por favor, selecciona o arrastra de 1 a 5 imágenes que utilizaras para
+        tus evidencias. <br /> El tamaño máximo de las imágenes es de 10MB.
       </p>
       {informacionDeLasEvidencias.length > 0 && (
         <section className="CrearInfraccionEvidencias__ListaDeEvidencias">
